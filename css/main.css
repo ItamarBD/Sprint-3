@@ -1,0 +1,147 @@
+/***************** Fonts *****************/
+
+@font-face {
+    font-family: ubuntu;
+    src: url('../fonts/Ubuntu/Ubuntu-Light.ttf');
+}
+
+/***************** Base *****************/
+
+* {
+    box-sizing: border-box;
+}
+
+html {
+    font-family: Arial, serif;
+    color: black;
+}
+
+body {
+    margin: 0;
+    font-size: 16px;
+    background-color: lightcyan;
+}
+
+/* a {
+    text-decoration: none;
+} */
+
+/******************* Header ********************/
+
+header {
+    text-align: center;
+}
+
+/********** Nav **********/
+
+nav {
+    text-align: center;
+    background-color: lightblue;
+}
+
+nav a {
+    font-size: 1.2em;
+    color: rgb(34, 32, 28);
+}
+
+nav a:hover {
+    color: darkblue;
+}
+
+.router-link-active {
+    color: purple;
+}
+
+/******************* Main ********************/
+
+main {
+    text-align: center;
+}
+
+/*********** Home ***********/
+
+.home-page {
+    text-align: center;
+}
+
+.home-page img {
+    width: 100%;
+    height: auto;
+}
+
+/*********** About ***********/
+
+
+/*********** Email ***********/
+
+
+/*********** Keep ***********/
+
+
+/****************** Aside *******************/
+
+/* .aside {} */
+
+/******************* Footer ********************/
+
+footer {
+    text-align: center;
+    padding: 4px;
+    background-color: lightblue;
+}
+
+
+/************** Tablet and Desktop **************/
+
+@media (min-width: 740px) {}
+
+@media (min-width: 1030px) {}
+
+
+/**************** Helpers ****************/
+
+/********** Flex **********/
+
+.flex {
+    display: flex;
+}
+
+.space-between {
+    justify-content: space-between;
+}
+
+.space-even {
+    justify-content: space-evenly;
+}
+
+.space-around {
+    justify-content: space-around;
+}
+
+.space-center {
+    justify-content: center;
+}
+
+.align-center {
+    align-items: center;
+}
+
+.flex.wrap {
+    flex-wrap: wrap;
+}
+
+.flex-col {
+    flex-direction: column;
+}
+
+.flex-reverse {
+    flex-direction: row-reverse;
+}
+
+/********** Lists **********/
+
+.clean-list {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}

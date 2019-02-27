@@ -2,7 +2,7 @@
 
 export default {
     getRandomIntInclusive,
-    makeId,
+    sureUniqueId,
 }
 
 export function getRandomIntInclusive(min, max) {
@@ -21,4 +21,25 @@ export function makeId() {
     }
 
     return txt;
+}
+
+export function sureUniqueId(arr) {
+    if (arr) {
+        var uniqueId;
+        var isUnique = false;
+        while (!isUnique) {
+            uniqueId = makeId();
+            for (var i = 0; i < arr.length; i++) {
+                if (arr[i].id !== uniqueId) {
+                    isUnique = true;
+                } else {
+                    isUnique = false;
+                    break;
+                }
+            }
+        }
+        return uniqueId;
+    } else {
+        return makeId();
+    }
 }

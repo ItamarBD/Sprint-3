@@ -24,7 +24,7 @@ export function makeId() {
 }
 
 export function sureUniqueId(arr) {
-    if (arr) {
+    if (arr && arr.length) {
         var uniqueId;
         var isUnique = false;
         while (!isUnique) {

@@ -10,7 +10,6 @@ export default {
 var gMails = [];
 var MAILS_KEY = 'mails'
 
-_createMails();
 
 function addMail(newMail) {
     var mail = _createMail(newMail)
@@ -23,7 +22,11 @@ function getMails() {
     var tempgMails = storageService.load(MAILS_KEY);
     if (tempgMails && tempgMails.length) {
         gMails = tempgMails;
+    } else {
+        _createMails();
+
     }
+
     storageService.store(MAILS_KEY, gMails);
     return Promise.resolve(gMails);
 }
@@ -42,6 +45,7 @@ function _createMails() {
 
 function _createMail(newMail) {
     var uniqueId = utilService.sureUniqueId(gMails);
+
     return {
         id: uniqueId,
         sentTo: 'puki',
@@ -50,11 +54,11 @@ function _createMail(newMail) {
         body: 'May I',
         isRead: false,
         sentAt: new Date().toLocaleString(),
+        date: Date.now()
     }
 }
 
 function deletedMail(mailId) {
-    
     console.log('on delete', mailId)
     var mailIdx = gMails.findIndex(mail => mailId === mail.id)
     gMails.splice(mailIdx, 1)

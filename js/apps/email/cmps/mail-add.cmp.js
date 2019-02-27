@@ -1,12 +1,11 @@
 export default {
     template: `
     <section>
-        
         <div v-if="isClickNewMAil">
-            <button v-on:click="closeNewMail">XXXX</button>
+            <button v-on:click="closeNewMail">✖</button>
             <input type="text" value="Email Adress">
-            <input type="text" value="New Mail">
-            <textarea value="write the mail" cols="30" rows="10"></textarea>
+            <input type="text" value  ="New Mail">
+            <textarea placeholder="Message" cols="30" rows="10"></textarea>
 
             <button v-on:click="emitNewMail">SEND</button>
         </div>
@@ -18,8 +17,8 @@ export default {
         return {
             newMail: {
                 sentTo: null,
-                subject: 'Wassap with Vue?',
-                body: 'May I',
+                subject: 'Wassap?',
+                body: 'aaaaaaaaaaaaa',
                 isRead: false,
                 sentAt: new Date().toLocaleString(),
             },
@@ -41,7 +40,6 @@ export default {
 
     },
     created() {
-
     },
     mounted() {
 

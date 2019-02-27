@@ -6,18 +6,18 @@ import galeryShow from '../apps/keep/cmps/galery-show.cmp.js';
 export default {
     template: `
         <section>
-            <header>
-                <h1>Header - Keep app</h1>
-            </header>
             <main> 
-                <h3>Main - Keep app</h3>
                 <note-add 
                 v-on:addNote="pushNewNote"
                 ></note-add>
 
+                <hr>
+                <button v-on:click="clearAll">Clear All</button>
+
                 <galery-show 
                 v-bind:notes="notesToShow" 
                 v-on:selected="selectNote"
+                v-on:onDeleteNote="deleteNote"
                 ></galery-show>
 
                 <!-- {{notes}} -->
@@ -32,12 +32,20 @@ export default {
     },
     methods: {
         pushNewNote(newNote) {
+            // debugger
             keepService.addNote(newNote)
                 .then(ServiceNotes => this.notes = ServiceNotes)
         },
         selectNote(currNote) {
-            this.selectedNote = currNote;
+            // this.selectedNote = currNote;
         },
+        deleteNote(noteId){
+            keepService.deleteNote(noteId)
+        },
+        clearAll(){
+            keepService.clearAll();
+            this.notes = [];
+        }
     },
     computed: {
         notesToShow(){
@@ -46,7 +54,9 @@ export default {
     },
     created() {
         keepService.getNotes()
-            .then(ServiceNotes => this.notes = ServiceNotes)
+        .then(ServiceNotes =>{
+             this.notes = ServiceNotes
+        })
     },
     mounted() {
 

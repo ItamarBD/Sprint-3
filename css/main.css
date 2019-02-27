@@ -22,9 +22,9 @@ body {
     background-color: lightcyan;
 }
 
-/* a {
+a {
     text-decoration: none;
-} */
+}
 
 /******************* Header ********************/
 
@@ -82,19 +82,82 @@ main {
 
 /*********** Keep ***********/
 
+.add-new-note-section{
+    width: 95vw;
+    margin: 6px auto;
+    padding: 4px;
+    background-color: rgb(255, 255, 255);
+    justify-content: center;
+}
+.add-new-note-section button{
+    margin: 1px 1px;
+}
+.new-note-main{
+    float: left;
+    height: 100%;
+    font-size: 1em;
+    border: none;
+    width: 100vw;
+    margin: 4px 0;
+}
+
 .upload-note-file {
     display: none;
 }
 
 .custom-upload-note-file {
     display: inline-block;
-    padding: 6px 12px;
+    padding: 4px 8px;
     cursor: pointer;
     background-color: rgb(101, 173, 255);
 }
+
 .custom-upload-note-file:hover {
     background-color: rgb(22, 46, 73);
     color: rgb(255, 247, 231);
+}
+
+.note-list ul{
+    padding-left: 0;
+    margin: 0;
+}
+.note-list li{
+    background-color: rgb(226, 170, 85);
+    margin: .4em .1em .4em .1em;
+}
+.note-list li .body-note{
+    background-color: rgb(255, 194, 103);
+    padding: .2em;
+    margin: .4em .2em .4em .2em;
+    width: 100px;
+    height: 100px;
+    cursor: pointer;
+    transition: transform .3s;
+}
+
+.note-list li .body-note:hover {
+    transform: scale(1.1);
+}
+
+.container-note-ed{
+    padding: .2em;
+    
+}
+
+.btn-note-ed{
+    font-size: 20px;
+    height: 24px;
+    line-height: 20px;
+    background-color: rgba(255, 255, 255, 0);
+    border: none;
+    margin:0;
+    padding: 0;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.delete-note{
+    color: red;
 }
 
 .marked-note{
@@ -116,7 +179,14 @@ footer {
 
 /************** Tablet and Desktop **************/
 
-@media (min-width: 740px) {}
+@media (min-width: 500px) {
+    .new-note-main{
+        width: 45vw;
+    }
+    .add-new-note-section{
+        justify-content: space-between;
+    }
+}
 
 @media (min-width: 1030px) {}
 

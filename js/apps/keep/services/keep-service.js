@@ -5,13 +5,27 @@ export default {
     getNotes,
     addNote,
     getNoteById,
-    
+    deleteNote,
+    clearAll,
 }
 
 var gNotes = [];
 var NOTES_KEY = 'notes'
 
-_createNotes();
+function deleteNote(noteId) {
+    var noteIdx = gNotes.findIndex(note => noteId === note.id)
+    gNotes.splice(noteIdx, 1);
+    storageService.store(NOTES_KEY, gNotes);
+
+    return Promise.resolve()
+}
+
+function clearAll(){
+    gNotes = [];
+    storageService.store(NOTES_KEY, gNotes);
+
+    return Promise.resolve()
+}
 
 function addNote(newNote) {
     var note = _createNote(newNote)
@@ -21,11 +35,13 @@ function addNote(newNote) {
 }
 
 function getNotes() {
+    // debugger
     var tempgNotes = storageService.load(NOTES_KEY);
     if (tempgNotes && tempgNotes.length) {
         gNotes = tempgNotes;
+    } else {
+        _createNotes();
     }
-    storageService.store(NOTES_KEY, gNotes);
     return Promise.resolve(gNotes);
 }
 
@@ -38,13 +54,16 @@ function getNoteById(noteId) {
 }
 
 function _createNotes() {
+    // debugger
     gNotes = storageService.load(NOTES_KEY);
     if (gNotes && gNotes.length) return;
+
 
     var notes = []
     for (let i = 0; i < 5; i++) {
         notes.push(_createNote({ title: 'title Name' }))
     }
+
     storageService.store(NOTES_KEY, notes);
     gNotes = notes;
 }
@@ -53,10 +72,10 @@ function _createNote(newNote) {
     var uniqueId = utilService.sureUniqueId(gNotes);
     return {
         id: uniqueId,
-        url: null,
-        upload: null,
-        isPin: false,
+        url: newNote.url,
+        upload: newNote.upload,
+        isPin: newNote.isPin,
         title: newNote.title,
-        txt: null,
+        txt: newNote.txt,
     }
 }

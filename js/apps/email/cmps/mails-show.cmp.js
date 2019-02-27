@@ -2,14 +2,14 @@ export default {
     props: ['mails'],
     template: `
     <section>
-        <div>
-            <button>new mail in inbox</button>
-            <button>new mail in inbox</button>
-            <button>new mail in inbox</button>
-            <button>new mail in inbox</button>
-            <button>new mail in inbox</button>
-            <button>new mail in inbox</button>
-            <button>new mail in inbox</button>
+        <div v-if="mails">
+            {{mails.id}}
+            <ul>
+                <li class="clean-list" v-for="(currMail, idx) in mails"> 
+                    {{mails[idx]}}
+                    <button v-on:click="emitDeleted(currMail.id)">Delete mail</button>
+                </li>
+          </ul>
         </div>  
     </section>
     `,
@@ -19,13 +19,15 @@ export default {
         }
     },
     methods: {
-
+        emitDeleted(mailId) {
+            this.$emit('deleted', mailId)
+        }
     },
     computed: {
         
     },
     created() {
-        
+        console.log(this.mails)
     },
     mounted() {
 

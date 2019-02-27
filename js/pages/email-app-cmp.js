@@ -14,13 +14,11 @@ export default {
                 
                 <p>Mails lists</p>
                 
-                <mails-show></mails-show>
-                
-                {{mails}}
+                <mails-show v-bind:mails="mailsToShow" v-on:deleted="deletedMail"></mails-show>
+                <!-- {{mails.id}} -->
+                <!-- {{mails}} -->
 
-                <mail-add 
-                v-on:addMail="pushNewMail(newMail)"
-                >
+                <mail-add v-on:addMail="pushNewMail">
                 </mail-add>
                 
             </main>
@@ -35,10 +33,18 @@ export default {
         pushNewMail(newMail) {
             emailService.addMail(newMail)
                 .then(Servicemails => this.mails = Servicemails)
+        },
+        deletedMail(mailId) {
+            emailService.deletedMail(mailId)
+                .then(() => {
+                    console.log('mail deleted')
+                })
         }
     },
     computed: {
-
+        mailsToShow() {
+            return this.mails
+        }
     },
     created() {
         emailService.getMails()

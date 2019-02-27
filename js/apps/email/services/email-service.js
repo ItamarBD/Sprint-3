@@ -4,6 +4,7 @@ import storageService from '../../../services/storage-service.js'
 export default {
     getMails,
     addMail,
+    deletedMail
 }
 
 var gMails = [];
@@ -43,10 +44,20 @@ function _createMail(newMail) {
     var uniqueId = utilService.sureUniqueId(gMails);
     return {
         id: uniqueId,
-        sentTo: null,
+        sentTo: 'puki',
+        sentFrom: 'muki',
         subject: newMail.subject,
         body: 'May I',
         isRead: false,
         sentAt: new Date().toLocaleString(),
     }
+}
+
+function deletedMail(mailId) {
+    
+    console.log('on delete', mailId)
+    var mailIdx = gMails.findIndex(mail => mailId === mail.id)
+    gMails.splice(mailIdx, 1)
+    storageService.store(MAILS_KEY, gMails)
+    return Promise.resolve()
 }

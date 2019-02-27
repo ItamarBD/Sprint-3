@@ -1,4 +1,5 @@
 export default {
+    props: ['mails'],
     template: `
     <section>
         <div>

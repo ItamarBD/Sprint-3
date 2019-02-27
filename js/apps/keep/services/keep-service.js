@@ -13,7 +13,7 @@ var NOTES_KEY = 'notes'
 _createNotes();
 
 function addNote(newNote) {
-    var note = _createBook(newNote)
+    var note = _createNote(newNote)
     gNotes.push(note);
     storageService.store(NOTES_KEY, gNotes);
     return Promise.resolve(gNotes);

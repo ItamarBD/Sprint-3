@@ -1,21 +1,29 @@
 export default {
     template: `
     <section>
-        <div>
-            {{newNote}}
-            <input v-model="newNote.title" type="text" value="Add title">
+        <div class="add-new-note-section flex wrap align-center">
 
-            <input v-model="newNote.txt" type="text" value="Add text">
-            <input v-model="newNote.url" type="text" value="Url">
+            <input class="new-note-main" autofocus v-model="newNote.title" type="text" placeholder="Add title">
 
-            <!-- <input type="file" name="image" onchange="onFileInputChange(event)" /> -->
-
-            <label for="upload-note-file" class="custom-upload-note-file">Choose File ☁
-            </label>
-            <input id="upload-note-file" class="upload-note-file" multiple type="file"/>
-
-            <button v-on:click="emitNewNote">ADD NOTE</button>
+            <button>𝔸</button>
+            <button>📸</button>
+            <button>🎥</button>
+            <button>📢</button>
+            <button>📝</button>
+            <button>💾</button>
         </div>
+
+            <textarea v-if="typeChoose === 'text'" v-model="newNote.txt" name="" id="" cols="40" rows="8" placeholder="Add text"></textarea>
+
+            <input v-if="typeChoose === 'url'" v-model="newNote.url" type="text" placeholder="Add URL">
+
+            <label v-if="typeChoose === 'upload'" for="upload-note-file" class="custom-upload-note-file">☁💾
+            </label>
+            <input  id="upload-note-file" class="upload-note-file" multiple type="file"/>
+
+        <hr>
+        <button v-on:click="emitNewNote">ADD NOTE</button>
+
     </section>
     `,
     data() {
@@ -26,7 +34,8 @@ export default {
                 url: null,
                 upload: null,
                 isPin: false,
-            }
+            },
+            typeChoose: 'text',
         }
     },
     methods: {
@@ -48,4 +57,24 @@ export default {
     components: {
 
     }
+}
+
+// Select img to upload
+function onFileInputChange(ev) {
+    handleImageFromUpload(ev, renderCanvasGallery);
+    moveToEdit();
+}
+
+//UPLOAD IMG WITH INPUT FILE
+function handleImageFromUpload(ev, onImageReady) {
+    var reader = new FileReader();
+    reader.onload = function (event) {
+        var img = new Image();
+        // img.onload = onImageReady.bind(null, img);
+        img.onload = function() {
+            console.log('how fun ')
+        }
+        img.src = event.target.result;
+    }
+    reader.readAsDataURL(ev.target.files[0]);
 }

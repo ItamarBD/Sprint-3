@@ -3,6 +3,7 @@ import keepService from '../services/keep-service.js';
 export default {
     template: `
         <section v-if="note">
+            <h2>Welcome to edit page! yay</h2>
             <div>{{note.id}}</div>
             <div>{{note.title}}</div>
             <button ref="back-btn" v-on:click="backGalery">Back Galery</button>

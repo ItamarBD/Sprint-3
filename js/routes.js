@@ -10,6 +10,7 @@ const routes = [
     { path: '/', component: homeCmp },
     { path: '/about', component: aboutCmp },
     { path: '/email-app', component: emailApp },
+    
     { path: '/keep-app', component: keepApp },
     { path: '/keep-edit/:noteId', component: keepEdit },
 ]

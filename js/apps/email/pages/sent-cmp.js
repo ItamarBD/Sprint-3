@@ -2,7 +2,7 @@ export default {
     template: `
         <section>
             <header>
-                <h1>Edit</h1>
+                <h1>Sent</h1>
             </header>
             <main> 
             </main>

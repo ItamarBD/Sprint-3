@@ -1,5 +1,4 @@
 export default {
-    props: ['notes'],
     template: `
     <section>
         <div>
@@ -14,7 +13,6 @@ export default {
     data() {
         return {
             newNote: {
-                id: null,
                 url: null,
                 upload: null,
                 isPin: false,
@@ -24,21 +22,20 @@ export default {
         }
     },
     methods: {
-        emitNewNote(){
+        emitNewNote() {
             this.$emit('addNote', { ...this.newNote })
         }
-
     },
     computed: {
-        
+
     },
     created() {
-        
+
     },
     mounted() {
 
     },
     components: {
-        
+
     }
 }

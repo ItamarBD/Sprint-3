@@ -27,9 +27,9 @@ export default {
         }
     },
     methods: {
-        pushNewNote(newNote){
+        pushNewNote(newNote) {
             keepService.addNote(newNote)
-            .then(ServiceNotes => this.notes = ServiceNotes)
+                .then(ServiceNotes => this.notes = ServiceNotes)
         }
     },
     computed: {

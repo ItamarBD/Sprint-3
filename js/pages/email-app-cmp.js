@@ -37,7 +37,7 @@ export default {
                 .then(Servicemails => this.mails = Servicemails)
         }
     },
-    computed: {
+    computed: { // v-bind
 
     },
     created() {

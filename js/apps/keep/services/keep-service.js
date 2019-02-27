@@ -4,7 +4,8 @@ import storageService from '../../../services/storage-service.js'
 export default {
     getNotes,
     addNote,
-
+    getNoteById,
+    
 }
 
 var gNotes = [];
@@ -28,13 +29,21 @@ function getNotes() {
     return Promise.resolve(gNotes);
 }
 
+function getNoteById(noteId) {
+    gNotes = storageService.load(NOTES_KEY);
+    var note = gNotes.find(function (note) {
+        return noteId === note.id
+    })
+    return Promise.resolve(note)
+}
+
 function _createNotes() {
     gNotes = storageService.load(NOTES_KEY);
     if (gNotes && gNotes.length) return;
 
     var notes = []
     for (let i = 0; i < 5; i++) {
-        notes.push(_createNote({ title: 'title Name' }) )
+        notes.push(_createNote({ title: 'title Name' }))
     }
     storageService.store(NOTES_KEY, notes);
     gNotes = notes;

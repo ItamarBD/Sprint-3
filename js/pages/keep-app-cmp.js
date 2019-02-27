@@ -12,28 +12,37 @@ export default {
             <main> 
                 <h3>Main - Keep app</h3>
                 <note-add 
-                v-on:addNote="pushNewNote(newNote)"
-                >
-                </note-add>
-                <p>Galery of Notes</p>
-                <galery-show></galery-show>
-                {{notes}}
+                v-on:addNote="pushNewNote"
+                ></note-add>
+
+                <galery-show 
+                v-bind:notes="notesToShow" 
+                v-on:selected="selectNote"
+                ></galery-show>
+
+                <!-- {{notes}} -->
             </main>
         </section>
     `,
     data() {
         return {
             notes: [],
+            selectedNote: null,
         }
     },
     methods: {
         pushNewNote(newNote) {
             keepService.addNote(newNote)
                 .then(ServiceNotes => this.notes = ServiceNotes)
-        }
+        },
+        selectNote(currNote) {
+            this.selectedNote = currNote;
+        },
     },
     computed: {
-
+        notesToShow(){
+            return this.notes;
+        }
     },
     created() {
         keepService.getNotes()

@@ -1,16 +1,25 @@
+import keepEdit from '../pages/keep-edit-cmp.js';
+
 export default {
-    props: ['mails'],
+    props: ['notes'],
     template: `
     <section>
-        <div>
-            <button>sdfsdfgsgsg</button>
-            <button>sdfsdfgsgsg</button>
-            <button>sdfsdfgsgsg</button>
-            <button>sdfsdfgsgsg</button>
-            <button>sdfsdfgsgsg</button>
-            <button>sdfsdfgsgsg</button>
-            <button>sdfsdfgsgsg</button>
-        </div>  
+        <p>Galery of Notes</p>
+        <ul>
+            <li v-if="notes" 
+            class="clean-list"
+            v-for="(currNote, idx) in notes"
+            v-bind:key="currNote.id"
+            v-bind:class="{'marked-note': currNote.isPin}"
+            >
+            <!-- <router-link :to="'/note-edit/' + currNote.id">
+                <keep-edit
+                    v-on:click.native="$emit('selected', currNote)"
+                    v-bind:note="currNote" :idx="idx+1">
+                </keep-edit>
+            </router-link> -->
+            </li>
+        </ul> 
     </section>
     `,
     data() {
@@ -22,15 +31,15 @@ export default {
 
     },
     computed: {
-        
+
     },
     created() {
-        
+
     },
     mounted() {
 
     },
     components: {
-        
+        keepEdit
     }
 }

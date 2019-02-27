@@ -77,6 +77,24 @@ main {
 
 /*********** Keep ***********/
 
+.upload-note-file {
+    display: none;
+}
+
+.custom-upload-note-file {
+    display: inline-block;
+    padding: 6px 12px;
+    cursor: pointer;
+    background-color: rgb(101, 173, 255);
+}
+.custom-upload-note-file:hover {
+    background-color: rgb(22, 46, 73);
+    color: rgb(255, 247, 231);
+}
+
+.marked-note{
+    background-color: rgb(255, 230, 5);
+}
 
 /****************** Aside *******************/
 

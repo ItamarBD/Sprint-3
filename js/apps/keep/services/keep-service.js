@@ -72,10 +72,11 @@ function _createNote(newNote) {
     var uniqueId = utilService.sureUniqueId(gNotes);
     return {
         id: uniqueId,
-        url: newNote.url,
-        upload: newNote.upload,
-        isPin: newNote.isPin,
         title: newNote.title,
         txt: newNote.txt,
+        url: newNote.url,
+        upload: newNote.upload,
+        todos: newNote.todos,
+        isPin: newNote.isPin,
     }
 }

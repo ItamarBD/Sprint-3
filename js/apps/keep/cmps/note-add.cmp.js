@@ -62,10 +62,15 @@ export default {
     },
     methods: {
         emitNewNote() {
-            var copy = this.newNote
-            var new1 = JSON.parse(JSON.stringify(copy))
-            this.$emit('addNote', new1)
+
+            this.checkForTodos();
+
+            var copy = this.newNote;
+            var newNote = JSON.parse(JSON.stringify(copy))
+            this.$emit('addNote', newNote)
             // this.$emit('addNote', { ...this.newNote })
+
+            this.newNote.todos = [{ id: 0, txt: '' }, { id: 1, txt: '' }];
         },
         emitClearAllNotes() {
             this.$emit('clearNotes')
@@ -97,6 +102,17 @@ export default {
                 todos: [{ id: 0, txt: '' }, { id: 1, txt: '' }],
                 isPin: false,
                 isEdit: false,
+            }
+        },
+        checkForTodos(){
+            var text = '';
+            this.newNote.todos.forEach(todo => {
+                if(todo.txt.length){
+                    text += todo.txt;
+                }
+            })
+            if(text.length === 0){
+                this.newNote.todos = [];
             }
         }
     },

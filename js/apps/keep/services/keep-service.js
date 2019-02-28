@@ -67,12 +67,16 @@ function _createNotes() {
 
 
     var notes = []
-    for (let i = 0; i < 5; i++) {
+    for (let i = 0; i < 4; i++) {
         notes.push(_createNote({
-            title: 'title Name', isPin: false,
+            title: `title Name ${i+1}`, isPin: false,
             isEdit: false
         }))
     }
+    notes.push(_createNote({
+        title: 'title Name 28',url:'https://images.pexels.com/photos/1037994/pexels-photo-1037994.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500', isPin: false,
+        isEdit: false
+    }))
 
     storageService.store(NOTES_KEY, notes);
     gNotes = notes;

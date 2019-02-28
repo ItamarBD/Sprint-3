@@ -186,8 +186,6 @@ main {
     background-color: rgb(223, 71, 71);
 }
 
-
-
 .upload-note-file {
     display: none;
 }
@@ -237,6 +235,20 @@ main {
 .new-note-input::placeholder{
     color: rgba(255, 255, 255, 0.884);
 }
+.new-note-input-edit{
+    width: 100%;
+    padding: 6px 10px;
+    margin: 2px 0;
+    border: none;
+    font-size: 1.1em;
+    background-color: #3CBC8D;
+    color: white;
+    border-radius: 4px;
+    outline: none;
+}
+.new-note-input-edit::placeholder{
+    color: rgba(255, 255, 255, 0.884);
+}
 
 .note-text-area{
     width: 100%;
@@ -244,6 +256,11 @@ main {
 }
 .note-text-area-show{
     background-color: rgb(198, 255, 91);
+}
+
+.note-preview-img{
+    width: 100%;
+    height: auto;
 }
 
 .note-list ul{

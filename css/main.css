@@ -74,6 +74,11 @@ main {
 
 /*********** Email ***********/
 
+.mail-preview {
+    background-color: bisque;
+    margin: 10px;
+    border-radius: 5px;
+}
 
 /*********** Keep ***********/
 

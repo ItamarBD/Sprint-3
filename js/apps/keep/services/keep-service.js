@@ -7,10 +7,17 @@ export default {
     getNoteById,
     deleteNote,
     clearAll,
+    saveNewNote,
 }
 
 var gNotes = [];
 var NOTES_KEY = 'notes'
+
+function saveNewNote(UpdateNote){
+    var noteIdx = gNotes.findIndex(note => UpdateNote.id === note.id)
+    gNotes.splice(noteIdx, 1, UpdateNote);
+    storageService.store(NOTES_KEY, gNotes);
+}
 
 function deleteNote(noteId) {
     var noteIdx = gNotes.findIndex(note => noteId === note.id)
@@ -20,7 +27,7 @@ function deleteNote(noteId) {
     return Promise.resolve()
 }
 
-function clearAll(){
+function clearAll() {
     gNotes = [];
     storageService.store(NOTES_KEY, gNotes);
 
@@ -29,7 +36,7 @@ function clearAll(){
 
 function addNote(newNote) {
     var note = _createNote(newNote)
-    gNotes.push(note);
+    gNotes.unshift(note);
     storageService.store(NOTES_KEY, gNotes);
     return Promise.resolve(gNotes);
 }
@@ -61,7 +68,10 @@ function _createNotes() {
 
     var notes = []
     for (let i = 0; i < 5; i++) {
-        notes.push(_createNote({ title: 'title Name' }))
+        notes.push(_createNote({
+            title: 'title Name', isPin: false,
+            isEdit: false
+        }))
     }
 
     storageService.store(NOTES_KEY, notes);
@@ -78,5 +88,6 @@ function _createNote(newNote) {
         upload: newNote.upload,
         todos: newNote.todos,
         isPin: newNote.isPin,
+        isEdit: newNote.isEdit,
     }
 }

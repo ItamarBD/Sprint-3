@@ -5,38 +5,43 @@ export default {
 
             <input class="new-note-main" autofocus v-model="newNote.title" type="text" placeholder="Add title">
 
-            <button v-on:click="changeType('text')">𝔸</button>
-            <button v-on:click="changeType('url')">📸</button>
-            <button v-on:click="changeType('url')">🎥</button>
-            <button v-on:click="changeType('url')">📢</button>
+            <button v-on:click="changeType('text')">A</button>
+            <button v-on:click="changeType('imgUrl')">📸</button>
+            <button v-on:click="changeType('videoUrl')">🎥</button>
+            <button v-on:click="changeType('audioUrl')">📢</button>
             <button v-on:click="changeType('todo')">📝</button>
             <button v-on:click="changeType('upload')">☁</button>
+            <button v-on:click="cleanPost">🔥</button>
         </div>
 
-            <textarea class="note-text-area" v-if="typeChoose === 'text'" v-model="newNote.txt" rows="6" placeholder="Add text"></textarea>
+        <textarea class="new-note-text-area" v-if="typeChoose === 'text'" v-model="newNote.txt" rows="6" placeholder="Add text"></textarea>
 
-            <input v-if="typeChoose === 'url'" v-model="newNote.url" type="text" placeholder="Add URL">
+        <input class="new-note-input" v-if="typeChoose === 'imgUrl'" v-model="newNote.url" type="text" placeholder="Add Image URL">
+        <input class="new-note-input" v-if="typeChoose === 'videoUrl'" v-model="newNote.url" type="text" placeholder="Add Video URL">
+        <input class="new-note-input" v-if="typeChoose === 'audioUrl'" v-model="newNote.url" type="text" placeholder="Add Audio URL">
 
-            <label v-if="typeChoose === 'upload'" for="upload-note-file" class="custom-upload-note-file">☁
-            </label>
-            <input  id="upload-note-file" class="upload-note-file" multiple type="file"/>
+        <label v-if="typeChoose === 'upload'" for="upload-note-file" class="custom-upload-note-file">Upload File ☁
+        </label>
+        <input id="upload-note-file" class="upload-note-file" multiple type="file"/>
 
-            <div v-if="typeChoose === 'todo'">
-                
-
-                <div ref="lines-todo"
-                v-for="currTodo in newNote.todos" :key="currTodo.id">
-                    <div>
-                        <input type="text" v-model="currTodo.txt">
-                        <button v-on:click="removeTodo(currTodo.id)">🗑️</button>
-                    </div>
+        <div v-if="typeChoose === 'todo'">
+            <div ref="lines-todo" 
+            v-for="currTodo in newNote.todos" :key="currTodo.id">
+                <div>
+                    <input class="new-note-input" type="text" v-model="currTodo.txt">
+                    <button v-on:click="removeTodo(currTodo.id)"
+                    class="new-note-remove-btn">🗑️</button>
                 </div>
-
-                <button v-on:click="makeNewTodo">Add todo</button>
             </div>
+            <button class="new-note-add-todo" v-on:click="makeNewTodo">Add todo</button>
+        </div>
 
-        <hr>
-        <button v-on:click="emitNewNote">ADD NOTE</button>
+        <div class="flex wrap align-center space-even">
+            <button class="new-note-add-note" 
+            v-on:click="emitNewNote">ADD NOTE</button>
+            <button class="new-note-clear-note" 
+            v-on:click="emitClearAllNotes">Clear All</button>
+        </div>
 
     </section>
     `,
@@ -47,22 +52,33 @@ export default {
                 txt: null,
                 url: null,
                 upload: null,
-                todos: [{ id: 0, txt: 'b' }, { id: 1, txt: 'a' }],
+                todos: [{ id: 0, txt: '' }, { id: 1, txt: '' }],
                 isPin: false,
+                isEdit: false,
             },
-            typeChoose: 'todo',
+            typeChoose: '',
             todosIdCounter: 2,
         }
     },
     methods: {
         emitNewNote() {
-            this.$emit('addNote', { ...this.newNote })
+            var copy = this.newNote
+            var new1 = JSON.parse(JSON.stringify(copy))
+            this.$emit('addNote', new1)
+            // this.$emit('addNote', { ...this.newNote })
+        },
+        emitClearAllNotes() {
+            this.$emit('clearNotes')
         },
         changeType(newType) {
-            this.typeChoose = newType;
+            if(newType === this.typeChoose){
+                this.typeChoose = '';
+            }else{
+                this.typeChoose = newType;
+            }
         },
         makeNewTodo() {
-            var toPush = {id:this.todosIdCounter, txt: ''}
+            var toPush = { id: this.todosIdCounter, txt: '' }
             this.newNote.todos.push(toPush);
             this.todosIdCounter = this.todosIdCounter + 1;
         },
@@ -72,6 +88,17 @@ export default {
             })
             this.newNote.todos.splice(todoIdx, 1);
         },
+        cleanPost(){
+            this.newNote = {
+                title: null,
+                txt: null,
+                url: null,
+                upload: null,
+                todos: [{ id: 0, txt: '' }, { id: 1, txt: '' }],
+                isPin: false,
+                isEdit: false,
+            }
+        }
     },
     computed: {
         addTitle() {

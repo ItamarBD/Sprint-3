@@ -9,15 +9,16 @@ export default {
             <main> 
                 <note-add 
                 v-on:addNote="pushNewNote"
+                v-on:clearNotes="clearAll"
                 ></note-add>
 
-                <hr>
-                <button v-on:click="clearAll">Clear All</button>
+                <!-- <button v-on:click="clearAll">Clear All</button> -->
 
                 <galery-show 
                 v-bind:notes="notesToShow" 
                 v-on:selected="selectNote"
                 v-on:onDeleteNote="deleteNote"
+                v-on:onSavetostorage="savetostorage"
                 ></galery-show>
 
                 <!-- {{notes}} -->
@@ -43,8 +44,13 @@ export default {
             keepService.deleteNote(noteId)
         },
         clearAll(){
-            keepService.clearAll();
-            this.notes = [];
+            keepService.clearAll()
+            .then(emptyNotes =>{
+                this.notes = emptyNotes
+           })
+        },
+        savetostorage(currNote){
+            keepService.saveNewNote(currNote);
         }
     },
     computed: {

@@ -4,7 +4,9 @@ import storageService from '../../../services/storage-service.js'
 export default {
     getMails,
     addMail,
-    deletedMail
+    deletedMail,
+    getMailById,
+    changeReadMarkService,
 }
 
 var gMails = [];
@@ -26,9 +28,15 @@ function getMails() {
         _createMails();
 
     }
-
     storageService.store(MAILS_KEY, gMails);
     return Promise.resolve(gMails);
+}
+
+function getMailById(mailId) {
+    var mail = gMails.find((mail) => {
+        return mailId === mail.id
+    })
+    return Promise.resolve(mail)
 }
 
 function _createMails() {
@@ -39,6 +47,9 @@ function _createMails() {
     for (let i = 0; i < 5; i++) {
         mails.push(_createMail({ subject: 'Wassap with Vue?' }))
     }
+    for (let i = 0; i < 5; i++) {
+        mails.push(_createMail({ subject: 'aassap with Vue?' }))
+    }
     storageService.store(MAILS_KEY, mails);
     gMails = mails;
 }
@@ -48,10 +59,10 @@ function _createMail(newMail) {
 
     return {
         id: uniqueId,
-        sentTo: 'puki',
-        sentFrom: 'muki',
+        sentTo: newMail.sentTo,
+        sentFrom: newMail.sentFrom,
         subject: newMail.subject,
-        body: 'May I',
+        body: newMail.body,
         isRead: false,
         sentAt: new Date().toLocaleString(),
         date: Date.now()
@@ -64,4 +75,11 @@ function deletedMail(mailId) {
     gMails.splice(mailIdx, 1)
     storageService.store(MAILS_KEY, gMails)
     return Promise.resolve()
+}
+
+function changeReadMarkService(currMail) {
+    console.log('mail from service is:',currMail)
+    var mail = gMails.find((mail) => currMail.id === mail.id )
+    mail.isRead = currMail.isRead;
+    storageService.store(MAILS_KEY, gMails)
 }

@@ -1,8 +1,8 @@
 export default {
     template:`
         <section>
-            Filter <input type="text" placeholder="By subject" v-on:keyup="emitFilter" v-model="filter.subject"/>
-            <button v-on:keyup="emitFilter">Sort by date</button>
+            Search <input type="text" placeholder="By subject" v-on:keyup="emitFilter" v-model="filter.subject"/>
+            <button @click="emitFilter">Sort by subject</button>
 </section>
     `,
     data() {
@@ -17,6 +17,7 @@ export default {
         emitFilter() {
             console.log(this.filter);
             this.$emit('filtered', {...this.filter})
-        }
+        },
+
     }
 }

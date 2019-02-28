@@ -1,15 +1,28 @@
+import emailService from '../services/email-service.js'
+
 export default {
     props: ['mails'],
     template: `
     <section>
-        <div v-if="mails">
+    
+
+        <div v-if="mails" >
             <ul>
-                <li class="clean-list" v-for="(currMail, idx) in mails" @click.native="selectMail(currMail)"> 
-                    <div class="mail-preview">
-                        <span>{{currMail.id}}</span>
-                        <span>{{currMail.subject}}</span>
-                        <button v-on:click="emitDeleted(currMail.id)">Delete mail</button>
-                    </div>
+                <li class="clean-list" v-for="(currMail, idx) in mails"
+                    > 
+                    <router-link :to="'/email-app/' + currMail.id">
+                    <div class="mail-preview" 
+                    v-bind:class="{'not-bold': currMail.isRead}"
+                    @click.native="selectMail(currMail)"
+                    >
+                    <span>{{currMail.sentFrom}}</span>
+                    <span>{{currMail.subject}}</span>
+                    <span>{{currMail.sentAt}}</span>
+                    <button class="delete-mail-btn btn" v-on:click.stop.prevent="emitDeleted(currMail.id)">Delete mail</button>
+                    <button v-if="!currMail.isRead" v-on:click.stop.prevent="markAsRead(currMail)">Mark as read</button>
+                    <button v-if="currMail.isRead" v-on:click.stop.prevent="markAsRead(currMail)">Mark as unread</button>
+                        </div>
+                    </router-link>
                 </li>
           </ul>
         </div>  
@@ -25,17 +38,27 @@ export default {
             this.$emit('deleted', mailId)
         },
         selectMail(mail) {
+            mail.isRead = true
             console.log('mail', mail)
             this.$emit('selected', mail)
             if (mail === this.selectedMail) this.selectedMail = null
             else this.selectedMail = mail
+        },
+        markAsRead(mail) {
+            console.log('mmail',mail)
+            mail.isRead = !mail.isRead
+            this.$emit('onReading', mail)
         }
     },
     computed: {
         
     },
     created() {
-        console.log(this.mails)
+        const mailId =this.$route.params.mailId
+        emailService.getMailById(mailId)
+            .then(currMail =>{
+                this.mail = currMail
+            })
     },
     mounted() {
 

@@ -75,10 +75,83 @@ main {
 /*********** Email ***********/
 
 .mail-preview {
+    color: black;
     background-color: bisque;
-    margin: 10px;
+    margin: 0px;
+    border: 1px black solid;
     border-radius: 5px;
+    padding: 10px;
+    font-weight: bold;
 }
+
+.compose-btn {
+    margin-top: 15px;
+}
+
+.mail-preview:hover {
+    background-color: lightgreen;
+}
+
+.new-email {
+    flex-direction: column;
+}
+
+.close-new-email {
+}
+
+.not-bold {
+    font-weight: normal;
+}
+
+.mail-details-container {
+    flex-direction: column;
+}
+
+.mail-details {
+    padding: 10px;
+    border: 1px black solid;
+    width: 600px;
+    border-radius: 5px;
+    margin: 0 auto;
+    background-color: beige;
+}
+
+.message {
+    height: 400px;
+    background-color: #fff;
+    /* margin: 10px; */
+}
+
+.link {
+    color: #fff;
+    width: 60px;
+    height: 40px;
+    margin: 10px;
+    padding: 10px;
+    background-color: green;
+}
+
+.mails-container {
+    flex-direction: row-reverse;
+    justify-content: flex-end;
+}
+
+.side-bar {
+    background-color: bisque;
+    width: 200px;
+    margin: 20px 40px;
+    box-shadow: 0px 0px 10px 0px black;
+
+}
+
+.side-bar-element {
+    margin: 30px;
+    font-size: 1.5em;
+    cursor: pointer;
+    
+}
+
+
 
 /*********** Keep ***********/
 
@@ -229,6 +302,10 @@ footer {
 
 .flex-reverse {
     flex-direction: row-reverse;
+}
+
+.btn {
+    cursor: pointer;
 }
 
 /********** Lists **********/

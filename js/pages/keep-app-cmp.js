@@ -1,6 +1,7 @@
 import keepService from '../apps/keep/services/keep-service.js';
 
 import noteAdd from '../apps/keep/cmps/note-add.cmp.js';
+
 import galeryShow from '../apps/keep/cmps/galery-show.cmp.js';
 
 export default {
@@ -12,7 +13,7 @@ export default {
                 v-on:clearNotes="clearAll"
                 ></note-add>
 
-                <!-- <button v-on:click="clearAll">Clear All</button> -->
+
 
                 <galery-show 
                 v-bind:notes="notesToShow" 
@@ -21,7 +22,6 @@ export default {
                 v-on:onSavetostorage="savetostorage"
                 ></galery-show>
 
-                <!-- {{notes}} -->
             </main>
         </section>
     `,

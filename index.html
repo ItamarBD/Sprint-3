@@ -13,13 +13,13 @@
 <body>
     <div id="app" >
 
-        <nav>
+        <nav class="main-nav">
             <router-link to="/" exact>Home</router-link>
             <router-link to="/about">About</router-link>
-            <router-link to="/email-app">Email</router-link>
+            <router-link to="/email-app">Email<span class="mail-icon-bar"><img src="/img/icons/arroba.png"></span></router-link>
             <router-link to="/keep-app">Keep</router-link>
         </nav>
-
+        
         <router-view></router-view>
 
         <footer>

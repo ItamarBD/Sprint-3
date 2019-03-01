@@ -8,7 +8,7 @@ export default {
                 <h1>Home sweet home..</h1>
             </header>
             <main> 
-                <img src="../../img/backgrounds/sea.jpg"/>
+                <img src="/img/backgrounds/sea.jpg"/>
             </main>
         </section>
     `,

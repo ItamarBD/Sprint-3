@@ -5,12 +5,12 @@ export default {
 
             <input class="new-note-main" autofocus v-model="newNote.title" type="text" placeholder="Add title">
 
-            <button v-on:click="changeType('text')"><img src="/img/icons/afont2.png"></button>
+            <button v-on:click="changeType('text')"><img src="img/icons/afont2.png"></button>
             <button v-on:click="changeType('imgUrl')">📸</button>
             <button v-on:click="changeType('videoUrl')">🎥</button>
             <button v-on:click="changeType('audioUrl')">🎶</button>
             <button v-on:click="changeType('todo')">📝</button>
-            <button v-on:click="changeType('upload')"><img src="/img/icons/cloud.png"></button>
+            <button v-on:click="changeType('upload')"><img src="img/icons/cloud.png"></button>
             <!-- <button v-on:click="cleanPost">🔥</button> -->
         </div>
 

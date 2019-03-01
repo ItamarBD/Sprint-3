@@ -28,14 +28,14 @@ export default {
 
                     <button class="btn-note-ed" v-if="currNote.isPin"
                         v-on:click="togglePin(currNote); emitSavetostorage(currNote)"
-                        ><img src="/img/icons/star.png"></button>
+                        ><img src="img/icons/star.png"></button>
                         
                     <button class="btn-note-ed" v-if="currNote.isEdit"
                         v-on:click="toggleEditMode(currNote); emitSavetostorage(currNote)"
                         >💾</button>
                     <button class="btn-note-ed" v-if="!currNote.isEdit"
                         v-on:click="toggleEditMode(currNote)"
-                        ><img src="/img/icons/keyboard.png"></button>
+                        ><img src="img/icons/keyboard.png"></button>
                 </div>
             </li>
         </ul> 
@@ -64,14 +64,14 @@ export default {
 
                     <button class="btn-note-ed" v-if="!currNote.isPin"
                         v-on:click="togglePin(currNote); emitSavetostorage(currNote)"
-                        ><img src="/img/icons/unstar.png"></button>
+                        ><img src="img/icons/unstar.png"></button>
                         
                     <button class="btn-note-ed" v-if="currNote.isEdit"
                         v-on:click="toggleEditMode(currNote); emitSavetostorage(currNote)"
                         >💾</button>
                     <button class="btn-note-ed" v-if="!currNote.isEdit"
                         v-on:click="toggleEditMode(currNote)"
-                        ><img src="/img/icons/keyboard.png"></button>
+                        ><img src="img/icons/keyboard.png"></button>
                 </div>
             </li>
         </ul> 

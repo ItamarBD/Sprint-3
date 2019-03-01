@@ -3,11 +3,11 @@ import utilService from '../services/util-service.js';
 
 export default {
     template: `
-        <section>
+        <section class="home-page"> 
             <header>
                 <h1>Home sweet home..</h1>
             </header>
-            <main class="home-page"> 
+            <main> 
                 <img src="../../img/backgrounds/sea.jpg"/>
             </main>
         </section>

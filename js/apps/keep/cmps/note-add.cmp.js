@@ -1,6 +1,6 @@
 export default {
     template: `
-    <section>
+    <section class="all-new-note-section">
         <div class="add-new-note-section flex wrap align-center">
 
             <input class="new-note-main" autofocus v-model="newNote.title" type="text" placeholder="Add title">
@@ -28,7 +28,7 @@ export default {
             <div ref="lines-todo" 
             v-for="currTodo in newNote.todos" :key="currTodo.id">
                 <div>
-                    <input class="new-note-input" type="text" v-model="currTodo.txt">
+                    <input class="new-note-input" type="text" v-model="currTodo.txt" placeholder="Add Todo">
                     <button v-on:click="removeTodo(currTodo.id)"
                     class="new-note-remove-btn">🗑️</button>
                 </div>
@@ -37,9 +37,9 @@ export default {
         </div>
 
         <div class="flex wrap align-center space-even">
-            <button class="new-note-add-note" 
+            <button class="new-note-add-btn" 
             v-on:click="emitNewNote">ADD NOTE</button>
-            <button class="new-note-clear-note" 
+            <button class="new-note-clear-btn" 
             v-on:click="emitClearAllNotes">Clear All</button>
         </div>
 

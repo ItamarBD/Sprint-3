@@ -3,7 +3,7 @@ import utilService from '../services/util-service.js';
 
 export default {
     template: `
-        <section>
+        <section class="about-page">
             <header>
                 <h1>About Us</h1>
             </header>

@@ -5,6 +5,31 @@
     src: url('../fonts/Ubuntu/Ubuntu-Light.ttf');
 }
 
+@font-face {
+    font-family: indi-font;
+    src: url('../fonts/Indie_Flower/IndieFlower.ttf');
+}
+
+@font-face {
+    font-family: merienda-font;
+    src: url('../fonts/Merienda/Merienda-Regular.ttf');
+}
+
+@font-face {
+    font-family: shadows-font;
+    src: url('../fonts/Shadows_Into_Light_Two/ShadowsIntoLightTwo-Regular.ttf');
+}
+
+@font-face {
+    font-family: akronim-font;
+    src: url('../fonts/Akronim/Akronim-Regular.ttf');
+}
+
+@font-face {
+    font-family: henny-penny-font;
+    src: url('../fonts/Henny_Penny/HennyPenny-Regular.ttf');
+}
+
 /***************** Base *****************/
 
 * {
@@ -20,6 +45,9 @@ body {
     margin: 0;
     font-size: 16px;
     background-color: lightcyan;
+    background: linear-gradient(217deg, rgba(255, 60, 0, 0.8), rgba(255, 72, 0, 0) 70.71%), linear-gradient(127deg, rgba(255, 238, 0, 0.8), rgba(0, 255, 0, 0) 70.71%), linear-gradient(336deg, rgba(0, 0, 255, .8), rgba(0, 0, 255, 0) 70.71%);
+    min-height: 95vh;
+    margin-bottom: 5vh;
 }
 
 a {
@@ -40,20 +68,34 @@ header {
 
 nav {
     text-align: center;
-    background-color: lightblue;
+    background-color: #6b5b959f;
+    /* height: 5vh; */
+    /* line-height: 5vh; */
+    padding: 10px;
+    display: flex;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+    font-family: merienda-font, indi-font, Arial, Helvetica, sans-serif;
+
 }
 
 nav a {
-    font-size: 1.2em;
-    color: rgb(34, 32, 28);
+    position: relative;
+    font-size: 1.4em;
+    color: rgb(255, 255, 255);
+    background-color: #6b5b95ad;
+    padding: 4px;
+    border-radius: 2px;
+    margin: 6px 2px;
 }
 
 nav a:hover {
-    color: darkblue;
+    background-color: #db8acec5;
 }
 
 .router-link-active {
-    color: purple;
+    color: rgb(255, 255, 255);
+    background-color: #db8acec5;
 }
 
 /******************* Main ********************/
@@ -64,17 +106,45 @@ main {
 
 /*********** Home ***********/
 
-.home-page {
-    text-align: center;
+.home-page header h1 {
+    font-family: akronim-font, henny-penny-font, indi-font, Arial, Helvetica, sans-serif;
+    font-size: 52px;
+    margin: 10px 0;
+    color: rgb(43, 56, 51);
 }
 
-.home-page img {
+.home-page main img {
     width: 100%;
     height: auto;
 }
 
 /*********** About ***********/
 
+.about-page header {
+    font-family: indi-font, Arial, Helvetica, sans-serif;
+}
+
+.about-page header h1 {
+    font-size: 36px;
+    margin: 10px 0;
+
+}
+
+.about-page main {
+    font-family: henny-penny-font, indi-font, Arial, Helvetica, sans-serif;
+}
+
+.about-page main a {
+    font-size: 22px;
+    color: white;
+    padding: 4px 8px 0px 8px;
+}
+
+.about-page main a:hover {
+    color: rgb(104, 0, 0);
+    background-color: rgba(255, 228, 196, 0.39);
+    border-radius: 6px;
+}
 
 /*********** Email ***********/
 
@@ -100,8 +170,7 @@ main {
     flex-direction: column;
 }
 
-.close-new-email {
-}
+.close-new-email {}
 
 .not-bold {
     font-weight: normal;
@@ -152,28 +221,35 @@ main {
     margin: 30px;
     font-size: 1.5em;
     cursor: pointer;
-    
+
 }
 
+/****************************** Keep ******************************/
 
+/********************** New Note **********************/
 
-/*********** Keep ***********/
+.all-new-note-section{
+    font-family: cursive, arial, serif, sans-serif;
+}
 
-.add-new-note-section{
+.add-new-note-section {
     width: 95vw;
     margin: 6px auto;
     padding: 4px;
     /* background-color: #c4b7a6; */
     background-image: url("../img/flowers/main\ input.png");
-    background-position: right;
+    background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
     justify-content: center;
     padding: 10px 12px;
     border-radius: 4px;
+    justify-content: space-evenly;
+    font-family: cursive, arial, serif, sans-serif;
 }
+
 .add-new-note-section button,
-.new-note-remove-btn{
+.new-note-remove-btn {
     margin: 1px 1px;
     font-size: 24px;
     font-weight: bold;
@@ -181,24 +257,25 @@ main {
     border: none;
     cursor: pointer;
     transition: transform .3s;
-    padding:0;
+    padding: 0;
     outline: none;
 }
 
 .add-new-note-section button:nth-child(2),
-.add-new-note-section button:nth-child(7){
+.add-new-note-section button:nth-child(7) {
     font-size: 28px;
     color: #36486b;
 }
 
-.add-new-note-section button:hover{
+.add-new-note-section button:hover {
     transform: scale(1.4);
 }
-.new-note-remove-btn:hover{
+
+.new-note-remove-btn:hover {
     transform: scale(1.2);
 }
 
-.new-note-main{
+.new-note-main {
     background-color: #c4b7a600;
     height: 40px;
     font-size: 1.4em;
@@ -207,60 +284,64 @@ main {
     padding-left: 8px;
     outline: none;
     /* color: white; */
-    color: rgb(34, 34, 34);
-}
-.new-note-main::placeholder{
-    /* color: rgba(255, 255, 255, 0.884); */
-    color: rgba(0, 0, 0, 0.884);
+    color: rgb(14, 14, 14);
+    font-family: cursive, arial, serif, sans-serif;
 }
 
-.new-note-add-todo{
+.new-note-main::placeholder {
+    /* color: rgba(255, 255, 255, 0.884); */
+    color: rgba(0, 0, 0, 0.6);
+}
+
+.new-note-add-todo {
     padding: 4px 8px;
     cursor: pointer;
     border: none;
     background-color: #3CBC8D;
     color: white;
-    font-size:1em;
+    font-size: 1em;
     border-radius: 4px;
     margin: 6px 0 4px 0px;
     padding: 6px 12px;
     outline: none;
 }
-.new-note-add-todo:hover{
+
+.new-note-add-todo:hover {
     background-color: rgb(175, 188, 60);
 }
 
-.new-note-add-note{
+.new-note-add-btn {
     padding: 4px 8px;
     cursor: pointer;
     border: none;
-    background-color: rgb(60, 188, 177);
+    background-color: rgb(78, 189, 133);
     color: white;
-    font-size:1em;
+    font-size: 1em;
     border-radius: 4px;
     margin: 6px 0 4px 0px;
     padding: 6px 12px;
     outline: none;
 }
 
-.new-note-add-note:hover{
-    background-color: rgb(223, 170, 71);
+.new-note-add-btn:hover {
+    background-color: rgb(10, 189, 70);
 }
-.new-note-clear-note{
+
+.new-note-clear-btn {
     padding: 4px 8px;
     cursor: pointer;
     border: none;
-    background-color: rgb(188, 96, 60);
+    background-color: #f56757;
     color: white;
-    font-size:.8em;
+    font-size: .8em;
     border-radius: 4px;
     margin: 6px 0 4px 0px;
     padding: 6px 12px;
     outline: none;
 }
 
-.new-note-clear-note:hover{
-    background-color: rgb(223, 71, 71);
+.new-note-clear-btn:hover {
+    background-color: #ff3c3c;
 }
 
 .upload-note-file {
@@ -275,6 +356,8 @@ main {
     color: white;
     border-radius: 4px;
     outline: none;
+    font-family: cursive, arial, serif, sans-serif;
+
 }
 
 .custom-upload-note-file:hover {
@@ -282,7 +365,7 @@ main {
     /* color: black; */
 }
 
-.new-note-text-area{
+.new-note-text-area {
     width: 80vw;
     padding: 8px 12px;
     margin: 8px 0;
@@ -292,13 +375,14 @@ main {
     color: white;
     border-radius: 4px;
     outline: none;
+    font-family: cursive, arial, serif, sans-serif;
 }
 
-.new-note-text-area::placeholder{
-    color: rgba(255, 255, 255, 0.884);
+.new-note-text-area::placeholder {
+    color: rgba(255, 255, 255, 0.7);
 }
 
-.new-note-input{
+.new-note-input {
     width: 60%;
     padding: 6px 10px;
     margin: 2px 0;
@@ -308,11 +392,16 @@ main {
     color: white;
     border-radius: 4px;
     outline: none;
+    font-family: cursive, arial, serif, sans-serif;
 }
-.new-note-input::placeholder{
-    color: rgba(255, 255, 255, 0.884);
+
+.new-note-input::placeholder {
+    color: rgba(255, 255, 255, 0.7);
 }
-.new-note-input-edit{
+
+/*************************** Galery ***************************/
+
+.new-note-input-edit {
     width: 100%;
     padding: 6px 10px;
     margin: 2px 0;
@@ -323,68 +412,84 @@ main {
     border-radius: 4px;
     outline: none;
 }
-.new-note-input-edit::placeholder{
+
+.new-note-input-edit::placeholder {
     color: rgba(255, 255, 255, 0.884);
 }
 
-.note-text-area{
+.note-text-area {
     width: 100%;
     height: 20vh;
 }
-.note-text-area-show{
+
+.note-text-area-show {
     background-color: rgb(198, 255, 91);
 }
 
-.note-preview-img{
+.note-preview-img {
     width: 100%;
     height: auto;
 }
 
-.note-list ul{
+
+
+.note-list ul {
     padding-left: 0;
-    margin: 0 .5em .5em;
+    margin: 0 .5em 0;
     column-count: 1;
     column-gap: 12px;
 }
 
-.note-list li{
+.note-list li {
     background-color: rgb(255, 225, 91);
     margin: 0 0 1em;
     break-inside: avoid;
     padding: 5px;
 }
 
-.note-list li .body-note{
+.note-list li .body-note {
     background-color: rgb(255, 255, 91);
     padding: .4em;
 }
 
-.body-note h4{
+.body-note {
+    font-family: cursive, arial, serif, sans-serif;
+}
+
+.body-note h4 {
     margin: 0;
     font-size: 1.2em;
 }
 
-.container-note-ed{
+.container-note-ed {
     padding: .2em;
 }
 
-.btn-note-ed{
+.container-note-ed button {
+    transition: transform .2s;
+}
+
+.container-note-ed button:hover {
+    transform: scale(1.4);
+}
+
+.btn-note-ed {
     font-size: 20px;
     height: 24px;
     line-height: 20px;
     background-color: rgba(255, 255, 255, 0);
     border: none;
-    margin:0;
+    margin: 0;
     padding: 0;
     font-weight: bold;
     cursor: pointer;
 }
 
-.delete-note{
+.delete-note {
     color: red;
 }
 
-.marked-note{
+.marked-note {
     background-color: rgb(255, 230, 5);
 }
 
@@ -398,30 +503,50 @@ main {
 footer {
     text-align: center;
     padding: 4px;
-    background-color: lightblue;
+    background-color: #6b5b9548;
+    color: white;
+    font-family: shadows-font, merienda-font, indi-font, Arial, Helvetica, sans-serif;
+    margin: 0.5em 0 0;
+    height: 5vh;
+    line-height: 4vh;
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
 }
 
 
 /************** Tablet and Desktop **************/
 
 @media (min-width: 500px) {
-    .new-note-main{
+    .new-note-main {
         width: 45vw;
+        font-family: cursive, arial, serif, sans-serif;
     }
-    .add-new-note-section{
+
+    .add-new-note-section {
         justify-content: space-between;
+        font-family: cursive, arial, serif, sans-serif;
     }
-   
+
+    nav {
+        display: list-item;
+    }
+
+    nav a {
+        margin: 0px 6px;
+    }
 }
+
 @media (min-width: 700px) {
 
-    .note-list ul{
+    .note-list ul {
         column-count: 3;
     }
 }
 
 @media (min-width: 500px) and (max-width: 700px) {
-    .note-list ul{
+    .note-list ul {
         column-count: 2;
     }
 }
@@ -471,7 +596,7 @@ footer {
 
 
 
-.flex-child{
+.flex-child {
     flex-shrink: 1;
     flex-grow: 1;
     flex-basis: 100%;
@@ -490,7 +615,7 @@ footer {
     text-align: left;
 }
 
-.text-wrap{
+.text-wrap {
     overflow-wrap: break-word;
     word-wrap: break-word;
     hyphens: auto;

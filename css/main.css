@@ -375,7 +375,8 @@ main {
     outline: none;
 }
 
-.add-new-note-section button:hover {
+.add-new-note-section button:hover,
+.add-new-note-section button.active {
     transform: scale(1.4);
 }
 
@@ -452,7 +453,6 @@ main {
     border-radius: 4px;
     font-size: 1em;
     margin: 4px 0 4px 0;
-    padding: 6px 12px;
     outline: none;
     font-family: merienda-font, arial, serif, sans-serif;
 }
@@ -648,7 +648,7 @@ main {
     color: rgba(255, 255, 255, 0.7);
 }
 
-.note-todo-remove {
+.note-btn-remove {
     margin: 1px 1px;
     font-size: 16px;
     font-weight: bold;
@@ -660,11 +660,11 @@ main {
     outline: none;
 }
 
-.note-todo-remove:hover {
+.note-btn-remove:hover {
     transform: scale(1.2);
 }
 
-.note-todo-add {
+.note-btn-add {
     padding: 4px 8px;
     cursor: pointer;
     border: none;
@@ -676,7 +676,7 @@ main {
     /* transition: transform .3s; */
 }
 
-.note-todo-add:hover {
+.note-btn-add:hover {
     background-color: rgb(15, 207, 137);
     /* transform: scale(1.2); */
 }
@@ -684,6 +684,28 @@ main {
 .note-preview-img {
     width: 100%;
     height: auto;
+}
+
+.note-preview-video,
+.note-edit-video{
+    width: 100%;
+    height: auto;
+    border: none;
+}
+
+.note-edit-video{
+    opacity: .5;
+}
+.note-edit-audio{
+    opacity: .5;
+}
+
+.note-preview-audio,
+.note-edit-audio{
+    width: 100%;
+    /* height: auto; */
+    background-color: rgb(209, 209, 196);
+    border-radius: 4px;
 }
 
 .note-edit-img {

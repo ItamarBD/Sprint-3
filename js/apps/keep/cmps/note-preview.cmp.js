@@ -3,7 +3,7 @@ export default {
     template: `
     <section>
 
-        <!-- Edit -->
+        <!------------------ Edit ------------------>
         <div class="body-note" 
         v-if="note.isEdit"
         v-bind:style= "[ note.color ? { backgroundColor: note.color } : {}]">
@@ -18,30 +18,77 @@ export default {
             v-model="note.txt" 
             class="note-area-edit" type="text"></textarea>
 
-
-            <div class="flex wrap space-between" v-if="note.url.src || note.url.isNew">
-                <input  class="note-url-edit" v-model="note.url.src"
-                type="text" placeholder="Write URL">
-                <button class="note-todo-remove" v-on:click="removeUrl()">🗑️</button>
+            <!-- Image -->
+            <div class="flex wrap space-between" 
+                    v-if="note.imgUrl.src || note.imgUrl.isNew">
+                <input class="note-url-edit" type="text" placeholder="Image URL"
+                    v-model="note.imgUrl.src">
+                <button class="note-btn-remove"
+                    v-on:click="removeImgUrl()">🗑️</button>
             </div>
-            <img v-if="note.url.src"
-            class="note-edit-img"
-            v-bind:src="note.url.src">
+            <img class="note-edit-img"
+                v-if="note.imgUrl.src"
+                v-bind:src="note.imgUrl.src"
+            >
 
+            <!-- Video -->
+            <div class="flex wrap space-between"
+                v-if="note.vdoUrl.src || note.vdoUrl.isNew">
+                <input class="note-url-edit" type="text" placeholder="Video URL"
+                    v-model="note.vdoUrl.src">
+                <button class="note-btn-remove" 
+                    v-on:click="removeViedoUrl()">🗑️</button>
+            </div>
+            <iframe class="note-edit-video"
+                v-if="note.vdoUrl.src"
+                v-bind:src="note.vdoUrl.src">
+            </iframe>
+
+            <!-- Audio -->
+            <div class="flex wrap space-between"
+                v-if="note.adoUrl.src || note.adoUrl.isNew">
+                <input class="note-url-edit" type="text" placeholder="Audio URL"
+                    v-model="note.adoUrl.src">
+                <button class="note-btn-remove"
+                    v-on:click="removeAudioUrl()">🗑️</button>
+            </div>
+            <audio class="note-edit-audio" controls 
+                v-if="note.adoUrl.src"
+                v-bind:src="note.adoUrl.src">
+            </audio>
+
+            <!-- Todos -->
             <div
                 v-for="(currTodo,idx) in note.todos"
                 :key="currTodo.id"
                 class="flex wrap space-between">
                 <input class="note-todo-edit" type="text" v-model="currTodo.txt" placeholder="Write Todo">
-                <button class="note-todo-remove" v-on:click="removeTodo(currTodo.id)">🗑️</button>
+                <button class="note-btn-remove" v-on:click="removeTodo(currTodo.id)">🗑️</button>
             </div>
-            <button class="note-todo-add" v-on:click="makeNewTodo">Add Todo</button>
 
-            <button v-if="!note.url.src && !note.url.isNew" class="note-todo-add" v-on:click="makeNewUrl">Add URL</button>
+            <!-- Add btn section -->
+            <button class="note-btn-add" 
+                v-on:click="makeNewTodo">Todo
+            </button>
+
+            <button class="note-btn-add" 
+                v-if="!note.imgUrl.src && !note.imgUrl.isNew" 
+                v-on:click="makeNewImgUrl">Image
+            </button>
+
+            <button class="note-btn-add" 
+                v-if="!note.vdoUrl.src && !note.vdoUrl.isNew" 
+                v-on:click="makeNewVideoUrl">Video
+            </button>
+
+            <button class="note-btn-add" 
+                v-if="!note.adoUrl.src && !note.adoUrl.isNew" 
+                v-on:click="makeNewAudioUrl">Audio
+            </button>
 
         </div>
 
-        <!-- Preview -->
+        <!------------------ Preview ------------------>
         <div class="body-note" 
             v-if="!note.isEdit"
             v-bind:style= "[ note.color ? { backgroundColor: note.color } : {}]">
@@ -53,10 +100,25 @@ export default {
 
             <pre v-if="note.txt" class="note-area-show align-left text-wrap">{{note.txt}}</pre>
 
-            <img v-if="note.url.src"
-            class="note-preview-img"
-            v-bind:src="note.url.src">
+            <!-- Image -->
+            <img class="note-preview-img"
+                v-if="note.imgUrl.src"
+                v-bind:src="note.imgUrl.src"
+            >
 
+            <!-- Video -->
+            <iframe class="note-preview-video"
+                v-if="note.vdoUrl.src"
+                v-bind:src="note.vdoUrl.src">
+            </iframe>
+
+            <!-- Audio -->      
+            <audio class="note-preview-audio" controls 
+                v-if="note.adoUrl.src"
+                v-bind:src="note.adoUrl.src">
+            </audio>
+
+            <!-- Todos -->
             <div v-if="currTodo.txt"
             v-for="(currTodo,idx) in note.todos" 
             :key="currTodo.id"
@@ -79,8 +141,17 @@ export default {
             })
             this.note.todos.splice(todoIdx, 1);
         },
-        removeUrl(){
-            this.note.url.isNew = false;
+        removeImgUrl(){
+            this.note.imgUrl.isNew = false;
+            this.note.imgUrl.src = '';
+        },
+        removeViedoUrl(){
+            this.note.vdoUrl.isNew = false;
+            this.note.vdoUrl.src = '';
+        },
+        removeAudioUrl(){
+            this.note.adoUrl.isNew = false;
+            this.note.adoUrl.src = '';
         },
         makeNewTodo() {
             var toPush = {
@@ -90,8 +161,14 @@ export default {
             this.note.todos.push(toPush);
             this.todosIdCounter = this.todosIdCounter + 1;
         },
-        makeNewUrl() {
-            this.note.url.isNew = true;
+        makeNewImgUrl() {
+            this.note.imgUrl.isNew = true;
+        },
+        makeNewVideoUrl() {
+            this.note.vdoUrl.isNew = true;
+        },
+        makeNewAudioUrl() {
+            this.note.adoUrl.isNew = true;
         },
         resizeArea(){
             this.$refs.textAreaRef.style.height = "5px";

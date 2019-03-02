@@ -362,7 +362,6 @@ main {
 
 .new-note-add-btn,
 .new-note-clear-btn {
-    padding: 4px 8px;
     cursor: pointer;
     border: none;
     color: white;
@@ -374,17 +373,49 @@ main {
 }
 
 .new-note-add-btn {
-    background-color: rgb(78, 189, 133);
+    background-color: rgb(88, 161, 125);
     font-size: 1em;
+    padding: 4px 8px;
 }
 
 .new-note-add-btn:hover {
-    background-color: rgb(10, 189, 70);
+    background-color: rgb(91, 194, 125);
+}
+
+.filter-open,
+.filter-close{
+    padding: 4px 8px;
+    cursor: pointer;
+    border: none;
+    color: white;
+    border-radius: 4px;
+    font-size: 1em;
+    margin: 4px 0 4px 0;
+    padding: 6px 12px;
+    outline: none;
+    font-family: merienda-font, arial, serif, sans-serif;
+}
+
+.filter-open {
+    background-color: #c29277;
+}
+
+.filter-open:hover {
+    background-color: #e9882d;
+}
+
+.filter-close {
+    background-color: #a76b6b;
+}
+
+.filter-close:hover {
+    background-color: rgb(212, 116, 116);
 }
 
 .new-note-clear-btn {
-    background-color: #f56757;
+    background-color: #c96a60;
     font-size: .8em;
+    padding: 3px 6px;
 }
 
 .new-note-clear-btn:hover {
@@ -474,6 +505,8 @@ main {
 .body-note {
     font-family: cursive, merienda-font, arial, serif, sans-serif;
     border-radius: 4px;
+    background-color: rgb(247, 241, 222);
+    padding: 6px 6px;
 }
 
 .body-note h4 {
@@ -485,7 +518,9 @@ main {
     margin: 0 0 4px;
 }
 
-
+.body-note img {
+    border-radius: 4px;
+}
 
 .note-title-edit,
 .note-area-edit,
@@ -496,7 +531,6 @@ main {
     margin: 0 0 4px 0;
     border: none;
     font-size: 1em;
-    background-color: rgb(60, 169, 188);
     color: white;
     border-radius: 4px;
     outline: none;
@@ -508,15 +542,17 @@ main {
 
 .note-title-edit {
     width: 80%;
+    background-color: rgb(60, 169, 188);
 }
 
 .note-title-edit::placeholder {
-    color: rgba(255, 255, 255, 0.884);
+    color: rgba(255, 255, 255, 0.7);
 }
 
 .note-area-edit {
     width: 100%;
     height: 4.6em;
+    background-color: rgb(60, 141, 188);
 }
 
 .note-area-edit::placeholder {
@@ -524,11 +560,12 @@ main {
 }
 
 .note-url-edit {
-    width: 100%;
+    width: 85%;
+    background-color: rgb(60, 188, 160);
 }
 
 .note-url-edit::placeholder {
-    color: rgba(255, 255, 255, 0.884);
+    color: rgba(255, 255, 255, 0.7);
 }
 
 .note-area-show {
@@ -536,11 +573,17 @@ main {
     margin: 0 0 4px 0;
     font-family: cursive, merienda-font, arial, serif, sans-serif;
     border: 1px solid rgb(170, 167, 167);
+    border-radius: 4px;
     padding: 0px 6px 2px;
 }
 
 .note-todo-edit {
     width: 85%;
+    background-color: rgb(60, 169, 188);
+}
+
+.note-todo-edit::placeholder {
+    color: rgba(255, 255, 255, 0.7);
 }
 
 .note-todo-remove {
@@ -569,13 +612,11 @@ main {
     border-radius: 4px;
     outline: none;
     /* transition: transform .3s; */
-
 }
 
 .note-todo-add:hover {
     background-color: rgb(15, 207, 137);
     /* transform: scale(1.2); */
-
 }
 
 .note-preview-img {
@@ -602,21 +643,17 @@ main {
     padding: 4px;
 }
 
-.note-list li .body-note {
-    background-color: rgb(247, 241, 222);
-    padding: 6px 6px;
-}
-
-
 .container-note-ed {
     padding: .2em;
 }
 
-.container-note-ed button {
+.container-note-ed button,
+.container-note-ed label {
     transition: transform .2s;
 }
 
-.container-note-ed button:hover {
+.container-note-ed button:hover,
+.container-note-ed label:hover {
     transform: scale(1.25);
 }
 
@@ -635,6 +672,25 @@ main {
 
 .btn-note-ed img {
     height: 24px;
+}
+
+.note-color-input{
+    padding: 0;
+    height: 32px;
+    width: 25px;
+    background:rgba(223, 96, 96, 0);
+    border: 0 none;
+    outline: none;
+    border-radius: 5px; 
+    position: absolute;
+    /* visibility: hidden; */
+    z-index: -10;
+}
+
+.label-pic-color{
+    cursor:pointer;
+    outline: none;
+    font-size: 20px;
 }
 
 .delete-note {

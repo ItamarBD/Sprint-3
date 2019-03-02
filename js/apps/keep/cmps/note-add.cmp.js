@@ -1,9 +1,13 @@
+import { eventBus, EVENT_TOGGLE_SEARCH } from '../../../event-bus.js';
+
 export default {
     template: `
     <section>
         <div class="add-new-note-section flex wrap align-center">
 
-            <input class="new-note-main" autofocus v-model="newNote.title" type="text" placeholder="Add title">
+            <input v-on:keyup.enter="emitNewNote(); cleanPost();" 
+            class="new-note-main" ref="mainInput" 
+            v-model="newNote.title" type="text" placeholder="Add title">
 
             <button v-on:click="changeType('text')"><img src="img/icons/afont2.png"></button>
             <button v-on:click="changeType('imgUrl')">📸</button>
@@ -16,16 +20,22 @@ export default {
 
         <textarea class="new-note-text-area" v-if="typeChoose === 'text'" v-model="newNote.txt" placeholder="Add text"></textarea>
 
-        <input class="new-note-input" v-if="typeChoose === 'imgUrl'" v-model="newNote.url" type="text" placeholder="Add Image URL">
-        <input class="new-note-input" v-if="typeChoose === 'videoUrl'" v-model="newNote.url" type="text" placeholder="Add Video URL">
-        <input class="new-note-input" v-if="typeChoose === 'audioUrl'" v-model="newNote.url" type="text" placeholder="Add Audio URL">
+        <input class="new-note-input" v-on:keyup.enter="emitNewNote(); cleanPost();" v-if="typeChoose === 'imgUrl'" 
+        v-model="newNote.url.src"  type="text" placeholder="Add Image URL">
+
+        <input class="new-note-input" v-on:keyup.enter="emitNewNote(); cleanPost();" v-if="typeChoose === 'videoUrl'" 
+        v-model="newNote.url.src" type="text" placeholder="Add Video URL">
+
+        <input class="new-note-input" v-on:keyup.enter="emitNewNote(); cleanPost();" v-if="typeChoose === 'audioUrl'" 
+        v-model="newNote.url.src" type="text" placeholder="Add Audio URL">
 
         
         <div v-if="typeChoose === 'todo'">
             <div ref="lines-todo" 
             v-for="currTodo in newNote.todos" :key="currTodo.id">
             <div>
-                <input class="new-note-input" type="text" v-model="currTodo.txt" placeholder="Write Todo">
+                <input class="new-note-input" type="text" v-on:keyup.enter="emitNewNote(); cleanPost();" 
+                v-model="currTodo.txt" placeholder="Write Todo">
                 <button v-on:click="removeTodo(currTodo.id)"
                 class="new-note-remove-btn">🗑️</button>
             </div>
@@ -39,9 +49,13 @@ export default {
 
         <div class="flex wrap align-center space-even">
             <button class="new-note-add-btn" 
-            v-on:click="emitNewNote(); cleanPost();">ADD NOTE</button>
-            <button class="new-note-clear-btn" 
-            v-on:click="emitClearAllNotes">Clear All</button>
+            v-on:click="emitNewNote(); cleanPost();">ADD NOTE &nbsp;<span style="font-size: 0.8em;">(Enter)</span></button>
+
+            <button v-bind:class="toggleSearchBtn"
+            v-on:click="onFilterClicked">{{toggleSearchName}}</button>
+
+            <button class="new-note-clear-btn"
+            v-on:click="emitClearAllNotes">Delete All !!</button>
         </div>
 
     </section>
@@ -51,14 +65,21 @@ export default {
             newNote: {
                 title: null,
                 txt: null,
-                url: null,
+                url: { src: '', isNew: false },
                 upload: null,
                 todos: [{ id: 0, txt: '' }, { id: 1, txt: '' }],
                 isPin: false,
                 isEdit: false,
+                color: '',
             },
             typeChoose: '',
             todosIdCounter: 2,
+            toggleSearchName: 'Open Search',
+            toggleSearchBtn: 'filter-open',
+            window: {
+                width: 0,
+                height: 0
+            },
         }
     },
     methods: {
@@ -77,9 +98,9 @@ export default {
             this.$emit('clearNotes')
         },
         changeType(newType) {
-            if(newType === this.typeChoose){
+            if (newType === this.typeChoose) {
                 this.typeChoose = '';
-            }else{
+            } else {
                 this.typeChoose = newType;
             }
         },
@@ -94,28 +115,49 @@ export default {
             })
             this.newNote.todos.splice(todoIdx, 1);
         },
-        cleanPost(){
+        cleanPost() {
             this.newNote = {
                 title: null,
                 txt: null,
-                url: null,
+                url: { sec: '', isNew: false },
                 upload: null,
                 todos: [{ id: 0, txt: '' }, { id: 1, txt: '' }],
                 isPin: false,
                 isEdit: false,
+                color: '',
             }
+            this.typeChoose = '';
         },
-        checkForTodos(){
+        checkForTodos() {
             var text = '';
             this.newNote.todos.forEach(todo => {
-                if(todo.txt.length){
+                if (todo.txt.length) {
                     text += todo.txt;
                 }
             })
-            if(text.length === 0){
+            if (text.length === 0) {
                 this.newNote.todos = [];
             }
-        }
+        },
+        onFilterClicked() {
+            eventBus.$emit(EVENT_TOGGLE_SEARCH);
+
+            if (this.toggleSearchName === 'Open Search') {
+                this.toggleSearchName = 'Close Search';
+            } else {
+                this.toggleSearchName = 'Open Search';
+            }
+
+            if (this.toggleSearchBtn === 'filter-open') {
+                this.toggleSearchBtn = 'filter-close';
+            } else {
+                this.toggleSearchBtn = 'filter-open';
+            }
+        },
+        handleResize() {
+            this.window.width = window.innerWidth;
+            this.window.height = window.innerHeight;
+        },
     },
     computed: {
         addTitle() {
@@ -123,10 +165,17 @@ export default {
         }
     },
     created() {
-
+        window.addEventListener('resize', this.handleResize)
+        this.handleResize();
+    },
+    destroyed() {
+        window.removeEventListener('resize', this.handleResize)
     },
     mounted() {
-
+        this.handleResize();
+        if (this.window.width > 500) {
+            this.$refs.mainInput.focus();
+        }
     },
     components: {
 

@@ -81,8 +81,8 @@ export default {
             console.log('sort by subject')
             let e1 = obj1.subject.toLowerCase();
             let e2 = obj2.subject.toLowerCase();
-            console.log('e1', e1)
-            console.log('e2', e2)
+            // console.log('e1', e1)
+            // console.log('e2', e2)
             if (e1 > e2) return -1
             if (e1 < e2) return 1
             return 0

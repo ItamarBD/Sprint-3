@@ -11,9 +11,9 @@ export default {
 }
 
 var gNotes = [];
-var NOTES_KEY = 'notes'
+var NOTES_KEY = 'notes bla bla'
 
-function saveNewNote(UpdateNote){
+function saveNewNote(UpdateNote) {
     var noteIdx = gNotes.findIndex(note => UpdateNote.id === note.id)
     gNotes.splice(noteIdx, 1, UpdateNote);
     storageService.store(NOTES_KEY, gNotes);
@@ -69,13 +69,25 @@ function _createNotes() {
     var notes = []
     for (let i = 0; i < 4; i++) {
         notes.push(_createNote({
-            title: `title Name ${i+1}`, isPin: false,
-            isEdit: false
+            title: `title Name ${i + 1}`,
+            url: { src: '', isNew: false },
+            isPin: false,
+            isEdit: false,
+            todos: [],
+            txt: null,
+            upload: null,
+            color: ''
         }))
     }
     notes.push(_createNote({
-        title: 'title Name 28',url:'https://images.pexels.com/photos/1037994/pexels-photo-1037994.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500', isPin: false,
-        isEdit: false
+        title: 'title Name 28',
+        url: { src: 'https://images.pexels.com/photos/1037994/pexels-photo-1037994.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500', isNew: false },
+        isPin: true,
+        isEdit: false,
+        todos: [],
+        txt: null,
+        upload: null,
+        color: ''
     }))
 
     storageService.store(NOTES_KEY, notes);
@@ -93,5 +105,6 @@ function _createNote(newNote) {
         todos: newNote.todos,
         isPin: newNote.isPin,
         isEdit: newNote.isEdit,
+        color: newNote.color,
     }
 }

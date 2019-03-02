@@ -1,27 +1,29 @@
 import keepService from '../apps/keep/services/keep-service.js';
 
 import noteAdd from '../apps/keep/cmps/note-add.cmp.js';
-import galeryShow from '../apps/keep/cmps/galery-show.cmp.js';
+
+import notesShow from '../apps/keep/cmps/notes-show.cmp.js';
+import notesFilter from '../apps/keep/cmps/notes-filter-cmp.js';
 
 export default {
     template: `
         <section>
             <main> 
                 <note-add 
-                v-on:addNote="pushNewNote"
-                v-on:clearNotes="clearAll"
+                    v-on:addNote="pushNewNote"
+                    v-on:clearNotes="clearAll"
                 ></note-add>
 
-                <!-- <button v-on:click="clearAll">Clear All</button> -->
+                <notes-Filter
+                    v-on:filtered="setFilter"   
+                ></notes-Filter>
 
-                <galery-show 
-                v-bind:notes="notesToShow" 
-                v-on:selected="selectNote"
-                v-on:onDeleteNote="deleteNote"
-                v-on:onSavetostorage="savetostorage"
-                ></galery-show>
-
-                <!-- {{notes}} -->
+                <notes-show 
+                    v-bind:notes="notesToShow" 
+                    v-on:selected="selectNote"
+                    v-on:onDeleteNote="deleteNote"
+                    v-on:onSavetostorage="savetostorage"
+                ></notes-show>
             </main>
         </section>
     `,
@@ -29,6 +31,9 @@ export default {
         return {
             notes: [],
             selectedNote: null,
+            filterBy: {
+                title: '',
+            }
         }
     },
     methods: {
@@ -51,11 +56,27 @@ export default {
         },
         savetostorage(currNote){
             keepService.saveNewNote(currNote);
-        }
+        },
+        setFilter(filterBy) {
+            this.filterBy = filterBy;
+        },
     },
     computed: {
         notesToShow(){
-            return this.notes;
+            // return this.notes;
+            return this.notes.filter(note => {
+               if(note.title){
+                   var isTitleOk = note.title.includes(this.filterBy.title)
+                   
+                   if (isTitleOk) {
+                       return true
+                    } else {
+                        return false
+                    }
+                }else{
+                    return true;
+                }
+            })
         }
     },
     created() {
@@ -69,7 +90,7 @@ export default {
     },
     components: {
         noteAdd,
-        galeryShow,
-
+        notesShow,
+        notesFilter,
     }
 }

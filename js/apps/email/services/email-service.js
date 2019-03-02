@@ -40,7 +40,7 @@ function getMails() {
 
 function getMailById(mailId) {
     // ********************************** omer add 1 line below
-    gMails = storageService.load(MAILS_KEY);
+    getMails();
     var mail = gMails.find((mail) => {
         return mailId === mail.id
     })

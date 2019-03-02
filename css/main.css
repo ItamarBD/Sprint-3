@@ -30,6 +30,11 @@
     src: url('../fonts/Henny_Penny/HennyPenny-Regular.ttf');
 }
 
+@font-face {
+    font-family: typewriter-font;
+    src: url('../fonts/Typewriter/Stylish-Regular.ttf');
+}
+
 /***************** Base *****************/
 
 * {
@@ -201,7 +206,7 @@ main {
     background-color: rgba(23, 55, 114, 0.733);
 }
 
-/*********** Email ***********/
+/********************************************** Email ************************************************/
 
 .mail-preview {
     color: black;
@@ -226,8 +231,6 @@ main {
 .new-email {
     flex-direction: column;
 }
-
-.close-new-email {}
 
 .not-bold {
     font-weight: normal;
@@ -271,17 +274,75 @@ main {
     width: 200px;
     margin: 20px 40px;
     box-shadow: 0px 0px 10px 0px black;
-
 }
 
 .side-bar-element {
     margin: 30px;
     font-size: 1.5em;
     cursor: pointer;
-
 }
 
-/****************************** Keep ******************************/
+.mail-title-edit,
+.mail-area-edit{
+    padding: 2px 6px;
+    margin: 0 0 4px 0;
+    border: none;
+    border-radius: 4px;
+    outline: none;
+    position: relative;
+    font-family: typewriter-font ,merienda-font, arial, serif, sans-serif;
+    resize: none;
+}
+
+.mail-title-edit{
+    font-size: 1.2em;
+    width: 80%;
+    color: white;
+    background-color: rgb(60, 169, 188);
+}
+.mail-area-edit{
+    font-size: 1.6em;
+    width: 100%;
+    max-height: 90%;
+    min-height: 50%;
+    color: rgb(0, 0, 0);
+    /* background-color: rgb(200, 234, 255); */
+    background-image: url(/img/empty\ paper\ note/paper\ note2.png);
+    /* overflow: hidden; */
+    resize: none;
+}
+
+.mail-btn-sent{
+    padding: 4px 8px;
+    cursor: pointer;
+    border: none;
+    color: white;
+    background-color: rgb(68, 88, 92);
+    border-radius: 4px;
+    font-size: 1em;
+    margin: 8px 0 4px 0;
+    padding: 6px 12px;
+    font-family: merienda-font, arial, serif, sans-serif;
+}
+.mail-btn-sent:hover{
+    background-color: rgb(60, 169, 188);
+}
+
+.mail-area-edit:before {
+    /* background: url(/img/flowers/plamoria3.png) center center no-repeat; */
+    /* z-index: -50; */
+    /* content: 'sdgsdgs'; */
+    /* width: 100%; */
+    /* height: 90%; */
+    /* position: absolute; */
+    /* background-position: bottom 50vh left 50vw; */
+    /* background-size: 86px; */
+    /* background-repeat: no-repeat; */
+    /* background-image: url(/img/flowers/plamoria3.png); */
+    /* resize:none; */
+}
+
+/************************************************ Keep ********************************************/
 
 /********************** New Note **********************/
 
@@ -526,7 +587,6 @@ main {
 .note-area-edit,
 .note-url-edit,
 .note-todo-edit {
-    width: 80%;
     padding: 2px 6px;
     margin: 0 0 4px 0;
     border: none;
@@ -537,7 +597,6 @@ main {
     position: relative;
     font-family: cursive, merienda-font, arial, serif, sans-serif;
     resize: none;
-
 }
 
 .note-title-edit {
@@ -551,8 +610,11 @@ main {
 
 .note-area-edit {
     width: 100%;
-    height: 4.6em;
     background-color: rgb(60, 141, 188);
+    max-height: 9em;
+    min-height: 3em;
+    overflow: hidden;
+    resize: none;
 }
 
 .note-area-edit::placeholder {
@@ -798,6 +860,9 @@ footer {
 
 .space-center {
     justify-content: center;
+}
+.space-center {
+    justify-content: start;
 }
 
 .align-center {

@@ -13,6 +13,8 @@ export default {
 
             <textarea 
             v-if="note.txt" 
+            ref="textAreaRef"
+            v-on:keyup="resizeArea"
             v-model="note.txt" 
             class="note-area-edit" type="text"></textarea>
 
@@ -90,6 +92,10 @@ export default {
         },
         makeNewUrl() {
             this.note.url.isNew = true;
+        },
+        resizeArea(){
+            this.$refs.textAreaRef.style.height = "5px";
+            this.$refs.textAreaRef.style.height = (this.$refs.textAreaRef.scrollHeight)+"px";
         }
     },
 

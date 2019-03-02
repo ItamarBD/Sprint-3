@@ -7,11 +7,18 @@ export default {
     deletedMail,
     getMailById,
     changeReadMarkService,
+    saveMail,
 }
 
 var gMails = [];
 var MAILS_KEY = 'mails'
 
+
+function saveMail(UpdateMail){
+    var mailIdx = gMails.findIndex(mail => UpdateMail.id === mail.id);
+    gMails.splice(mailIdx, 1, UpdateMail);
+    storageService.store(MAILS_KEY, gMails);
+}
 
 function addMail(newMail) {
     var mail = _createMail(newMail)
@@ -26,13 +33,14 @@ function getMails() {
         gMails = tempgMails;
     } else {
         _createMails();
-
     }
     storageService.store(MAILS_KEY, gMails);
     return Promise.resolve(gMails);
 }
 
 function getMailById(mailId) {
+    // ********************************** omer add 1 line below
+    gMails = storageService.load(MAILS_KEY);
     var mail = gMails.find((mail) => {
         return mailId === mail.id
     })

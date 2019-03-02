@@ -1,4 +1,4 @@
-import emailApp from './pages/email-app-cmp.js';
+ import emailApp from './pages/email-app-cmp.js';
 import emailDetails from './apps/email/pages/mail-details.cmp.js'
 import emailReply from './apps/email/pages/email-reply.cmp.js'
 

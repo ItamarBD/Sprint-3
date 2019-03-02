@@ -137,6 +137,7 @@ export default {
             if (!this.filter && !this.statusMailToDisplay) return this.mails
 
             let filteredMails = this.mails.filter(mail => {
+                if(!mail.subject) return true; // omer add to prevent error with *includes*
                 return ((this.filter.hasOwnProperty('subject') && mail.subject.includes(this.filter.subject)) &&
                     (!this.statusMailToDisplay ||
                     (this.statusMailToDisplay === 1 && mail.isRead ||
@@ -152,11 +153,13 @@ export default {
         }
     },
     created() {
-        emailService.getMails()
-            .then(Servicemails => this.mails = Servicemails)
+        // ************************* omer change > move 2 line below to mounted()
+        // emailService.getMails()
+        //     .then(Servicemails => this.mails = Servicemails)
     },
     mounted() {
-
+        emailService.getMails()
+            .then(Servicemails => this.mails = Servicemails)
     },
     components: {
         mailsShow,

@@ -1,4 +1,3 @@
-import { eventBus, SEND_NOTE_TO_MAIL } from '../../../event-bus.js';
 
 import emailService from '../services/email-service.js'
 
@@ -57,29 +56,25 @@ export default {
             else this.selectedMail = mail
         },
         markAsRead(mail) {
-            console.log('mark as read',mail)
+            console.log('mark as read', mail)
             mail.isRead = !mail.isRead
             this.$emit('onReading', mail)
         }
     },
     computed: {
-        
+
     },
     created() {
-        console.log('in created');
-        const mailId =this.$route.params.mailId
+        const mailId = this.$route.params.mailId
         emailService.getMailById(mailId)
-        .then(currMail =>{
-            this.mail = currMail
-        });
-        eventBus.$on(SEND_NOTE_TO_MAIL, ()=>{
-            console.log('send note to mail! success');
-        })
+            .then(currMail => {
+                this.mail = currMail
+            });
     },
     mounted() {
 
     },
     components: {
-        
+
     }
 }

@@ -52,7 +52,7 @@ export default {
 
                     <!-- Email -->                    
                     <button class="btn-note-ed" title="Send to mail"
-                        v-on:click="onSendToEmail">
+                        v-on:click="onSendToEmail(currNote)">
                         <img src="img/icons/email.png">
                     </button>
 
@@ -174,9 +174,12 @@ export default {
             currNote.color = event.path[0].value;
             this.emitSaveToStorage(currNote);
         },
-        onSendToEmail() {
-            eventBus.$emit(SEND_NOTE_TO_MAIL);
-            console.log('send even bus')
+        onSendToEmail(currNote) {
+            this.$router.push('/email-app');
+            var toSendNote = JSON.parse(JSON.stringify(currNote));
+            setTimeout(() => {
+                eventBus.$emit(SEND_NOTE_TO_MAIL, toSendNote);
+            }, 150);
         },
     },
     computed: {

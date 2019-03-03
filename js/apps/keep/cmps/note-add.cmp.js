@@ -14,25 +14,26 @@ export default {
                 <img src="img/icons/Tfont2.png">
             </button>
 
+            <button v-bind:class="{ active: typeChoose === 'todo' }" title="Todo"
+                v-on:click="changeType('todo')"><img src="img/icons/todo.png">
+            </button>
+
             <button v-bind:class="{ active: typeChoose === 'imgUrl' }" title="Image URL"
-                v-on:click="changeType('imgUrl')">📸
+                v-on:click="changeType('imgUrl')"><img src="img/icons/image.png">
             </button>
 
             <button v-bind:class="{ active: typeChoose === 'videoUrl' }" title="Video URL"
-                v-on:click="changeType('videoUrl')">🎥
+                v-on:click="changeType('videoUrl')"><img src="img/icons/video-player.png">
             </button>
 
             <button v-bind:class="{ active: typeChoose === 'audioUrl' }" title="Audio URL"
-            v-on:click="changeType('audioUrl')">🎶</button>
-
-            <button v-bind:class="{ active: typeChoose === 'todo' }" title="Todo"
-                v-on:click="changeType('todo')">📝
+            v-on:click="changeType('audioUrl')"><img src="img/icons/music-player.png">
             </button>
 
-            <button v-bind:class="{ active: typeChoose === 'upload' }" title="Upload"
+            <!-- <button v-bind:class="{ active: typeChoose === 'upload' }" title="Upload"
                 v-on:click="changeType('upload')">
                     <img src="img/icons/cloud.png">
-            </button>
+            </button> -->
 
             <!-- <button v-on:click="cleanPost">🔥</button> -->
         </div>
@@ -83,17 +84,17 @@ export default {
         <div class="flex wrap align-center space-even">
             <button class="new-note-add-btn" title="Add note"
                 v-on:click="emitNewNote(); cleanPost();">ADD NOTE
-                <span style="font-size: 0.8em;">&nbsp; (Enter)</span>
+                <span style="font-size: 0.8em;">&nbsp;(Enter)</span>
             </button>
 
             <!-- filter button -->
             <button v-bind:class="toggleSearchBtn" title="Search notes"
-                v-on:click="onFilterClicked">{{toggleSearchName}}
+                v-on:click="onFilterClicked">{{toggleSearchName}}🍭
             </button>
 
-            <button class="new-note-clear-btn" title="Delete All Notes!"
+            <!-- <button class="new-note-clear-btn" title="Delete All Notes!"
                 v-on:click="emitClearAllNotes">Delete All !!
-            </button>
+            </button> -->
         </div>
 
     </section>
@@ -108,13 +109,13 @@ export default {
                 adoUrl: { src: '', isNew: false },
                 upload: null,
                 todos: [{ id: 0, txt: '' }, { id: 1, txt: '' }],
-                isPin: false,
+                isPin: true,
                 isEdit: false,
                 color: '',
             },
             typeChoose: '',
             todosIdCounter: 2,
-            toggleSearchName: 'Open Search',
+            toggleSearchName: 'Search ',
             toggleSearchBtn: 'filter-open',
             window: {
                 width: 0,
@@ -163,7 +164,7 @@ export default {
                 adoUrl: { src: '', isNew: false },
                 upload: null,
                 todos: [{ id: 0, txt: '' }, { id: 1, txt: '' }],
-                isPin: false,
+                isPin: true,
                 isEdit: false,
                 color: '',
             }
@@ -183,10 +184,10 @@ export default {
         onFilterClicked() {
             eventBus.$emit(EVENT_TOGGLE_SEARCH);
 
-            if (this.toggleSearchName === 'Open Search') {
-                this.toggleSearchName = 'Close Search';
+            if (this.toggleSearchName === 'Search ') {
+                this.toggleSearchName = 'Close ';
             } else {
-                this.toggleSearchName = 'Open Search';
+                this.toggleSearchName = 'Search ';
             }
 
             if (this.toggleSearchBtn === 'filter-open') {

@@ -23,14 +23,15 @@ export default {
                 body: '',
                 isRead: false,
                 sentAt: new Date().toLocaleString(),
-                date: Date.now()
-
+                date: Date.now(),
+                isSent: false
             },
             isClickNewMAil: false
         }
     },
     methods: {
         emitNewMail() {
+            this.newMail.isSent = true;
             this.$emit('addMail', { ...this.newMail })
             this.isClickNewMAil = false
             document.body.classList.toggle('open');

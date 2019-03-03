@@ -5,15 +5,18 @@ export default {
     <section>
         <div class="add-new-note-section flex wrap align-center">
 
-            <input v-on:keyup.enter="emitNewNote(); cleanPost();" 
-            class="new-note-main" ref="mainInput" 
-            v-model="newNote.title" type="text" placeholder="Add title">
+            <input class="new-note-main" ref="mainInput"  type="text" placeholder="Add title"
+                v-on:keyup.enter="emitNewNote(); cleanPost();" 
+                v-model="newNote.title">
 
             <button v-bind:class="{ active: typeChoose === 'text' }"
-            v-on:click="changeType('text')"><img src="img/icons/afont2.png"></button>
+                v-on:click="changeType('text')">
+                <img src="img/icons/afont2.png">
+            </button>
 
             <button v-bind:class="{ active: typeChoose === 'imgUrl' }"
-            v-on:click="changeType('imgUrl')">📸</button>
+                v-on:click="changeType('imgUrl')">📸
+            </button>
 
             <button v-bind:class="{ active: typeChoose === 'videoUrl' }"
             v-on:click="changeType('videoUrl')">🎥</button>
@@ -67,6 +70,7 @@ export default {
             <button class="new-note-add-btn" 
             v-on:click="emitNewNote(); cleanPost();">ADD NOTE &nbsp;<span style="font-size: 0.8em;">(Enter)</span></button>
 
+            <!-- filter button -->
             <button v-bind:class="toggleSearchBtn"
             v-on:click="onFilterClicked">{{toggleSearchName}}</button>
 

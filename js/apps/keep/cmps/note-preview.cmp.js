@@ -94,7 +94,7 @@ export default {
             v-bind:style= "[ note.color ? { backgroundColor: note.color } : {}]">
 
             <div class="title">
-                <label style="display: inline-block; float:left; margin-top: 3px;">Title:</label>
+                <!-- <label style="display: inline-block; float:left; margin-top: 3px;">Title:</label> -->
                 <h4 style="display: inline-block">{{note.title}}</h4>
             </div>
 

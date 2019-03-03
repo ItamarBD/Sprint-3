@@ -15,7 +15,7 @@ export default {
                 <h3>Main - Email app</h3>
                 <div>
                     <p>Mails list</p>
-                    <mail-filter v-on:searched="setSearch" v-on:filterBySubject="setFilterBySubject"></mail-filter>
+                    <mail-filter v-on:searched="setSearch" v-on:filterBy="setFilterBy"></mail-filter>
                     <mail-add v-on:addMail="pushNewMail"></mail-add>
                 </div>
                 
@@ -33,9 +33,9 @@ export default {
             filter: {
                 subject: ''
             },
-            statusMailToDisplay: 0,   //0 display all,1 display read,2 display unread
+            statusMailToDisplay: 0,   //0 display all,1 display read,2 display unread, 3 sent
             selectedMail: null,
-            filterBy: 'subjectUp'
+            filterBy: 'dateDown'
         }
     },
     methods: {
@@ -53,8 +53,7 @@ export default {
             console.log('filter', filter)
             this.filter = filter
         },
-        setFilterBySubject(filter) {
-            console.log('filter should be :-> ', filter)
+        setFilterBy(filter) {
             this.filterBy = filter
         },
         selectingMail(mail) {
@@ -63,10 +62,6 @@ export default {
         },
         changeReadMark(mail) {
             emailService.changeReadMarkService(mail)
-        },
-        selectAndMark(mail) {
-            selectingMail(mail)
-            changeReadMark(mail)
         },
         sortBySubjectUP(obj1, obj2) {
             console.log('sort by subject up', obj1.subject, obj2.subject)
@@ -90,21 +85,22 @@ export default {
         },
 
         emailsToDisplay(status) {
-            console.log(status)
+            console.log('status',status)
             this.statusMailToDisplay = status;
             this.mailsToShow
         }
     },
     computed: {
         mailsToShow() {
+            console.log('statusMailToDisplay',this.statusMailToDisplay)
             if (!this.filter && !this.statusMailToDisplay) return this.mails
-
             let filteredMails = this.mails.filter(mail => {
                 if (!mail.subject) return true; // omer add to prevent error with *includes*
                 return ((this.filter.hasOwnProperty('subject') && mail.subject.includes(this.filter.subject)) &&
                     (!this.statusMailToDisplay ||
-                        (this.statusMailToDisplay === 1 && mail.isRead ||
-                            this.statusMailToDisplay === 2 && !mail.isRead)))
+                    (this.statusMailToDisplay === 1 && mail.isRead ||
+                     this.statusMailToDisplay === 2 && !mail.isRead ||
+                     this.statusMailToDisplay === 3 && mail.isSent)))
             })
 
             switch (this.filterBy) {
@@ -124,14 +120,11 @@ export default {
                     filteredMails = filteredMails.sort(this.sortByDateDown)
                     break;
             }
-
             return filteredMails
         }
     },
     created() {
-        // ************************* omer change > move 2 line below to mounted()
-        // emailService.getMails()
-        //     .then(Servicemails => this.mails = Servicemails)
+
     },
     mounted() {
         emailService.getMails()

@@ -207,7 +207,7 @@ main {
 /********************************************** Email ************************************************/
 
 .mail-preview {
-    width: 1000px;
+    width: 77vw;
     color: black;
     background-color: bisque;
     margin: 0px;
@@ -216,6 +216,15 @@ main {
     padding: 10px;
     font-weight: bold;
     justify-content: space-between;
+    align-items: center;
+}
+
+.mail-buttons-container {
+    align-items: center;
+}
+
+.sent-at {
+    margin: 0 10px 0 0;
 }
 
 .compose-btn {
@@ -380,6 +389,23 @@ body.open .new-email {
     background-color: rgb(60, 169, 188);
 }
 
+.mail-btn {
+    margin: 1px 1px;
+    /* font-size: 24px; */
+    /* font-weight: bold; */
+    background-color: rgba(238, 225, 225, 0);
+    border: none;
+    cursor: pointer;
+    transition: transform .3s;
+    padding: 0;
+    outline: none;
+}
+
+.mail-btn-img {
+    width: 30px;
+    margin: 0 5px;
+}
+
 .mail-area-edit:before {
     /* background: url(/img/flowers/plamoria3.png) center center no-repeat; */
     /* z-index: -50; */
@@ -393,6 +419,18 @@ body.open .new-email {
     /* background-image: url(/img/flowers/plamoria3.png); */
     /* resize:none; */
 }
+
+@media (min-width: 500px) {
+    
+    .mail-preview {
+        padding: 6px;
+    }
+
+    .mail-btn-img {
+        margin: 0 2px;
+    }
+}
+
 
 /************************************************ Keep ********************************************/
 

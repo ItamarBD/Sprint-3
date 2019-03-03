@@ -8,6 +8,7 @@ export default {
     getMailById,
     changeReadMarkService,
     saveMail,
+    changeSentMarkService
 }
 
 var gMails = [];
@@ -16,7 +17,9 @@ var MAILS_KEY = 'mails'
 
 function saveMail(UpdateMail){
     var mailIdx = gMails.findIndex(mail => UpdateMail.id === mail.id);
-    gMails.splice(mailIdx, 1, UpdateMail);
+    // gMails.splice(mailIdx, 1, UpdateMail);
+    console.log(gMails[mailIdx])
+    // gMails.unshift(gMails[mailIdx]);
     storageService.store(MAILS_KEY, gMails);
 }
 
@@ -59,7 +62,8 @@ function _createMails() {
         body: '',
         isRead: false,
         sentAt: new Date().toLocaleString(),
-        date: Date.now()
+        date: Date.now(),
+        isSent: false
      }))
     mails.push(_createMail({ 
         subject: 'wassap???',
@@ -68,21 +72,17 @@ function _createMails() {
         body: '',
         isRead: false,
         sentAt: new Date().toLocaleString(),
-        date: Date.now()
+        date: Date.now(),
+        isSent: false
      }))
-    // for (let i = 0; i < 5; i++) {
-        // mails.push(_createMail({ subject: 'Wassap with Vue?' }))
-    // }
-    // for (let i = 0; i < 5; i++) {
-        // mails.push(_createMail({ subject: 'aassap with Vue?' }))
-    // }
+
     storageService.store(MAILS_KEY, mails);
     gMails = mails;
 }
 
 function _createMail(newMail) {
     var uniqueId = utilService.sureUniqueId(gMails);
-
+    if (newMail.subject === '') newMail.subject = 'Empty subject'
     return {
         id: uniqueId,
         sentTo: newMail.sentTo,
@@ -91,7 +91,8 @@ function _createMail(newMail) {
         body: newMail.body,
         isRead: false,
         sentAt: new Date().toLocaleString(),
-        date: Date.now()
+        date: Date.now(),
+        isSent: false
     }
 }
 
@@ -107,5 +108,12 @@ function changeReadMarkService(currMail) {
     console.log('mail from service is:',currMail)
     var mail = gMails.find((mail) => currMail.id === mail.id )
     mail.isRead = currMail.isRead;
+    storageService.store(MAILS_KEY, gMails)
+}
+
+function changeSentMarkService(currMail) {
+    console.log('change sent mark', currMail)
+    var mail = gMails.find((mail) => currMail.id === mail.id )
+    mail.isSent = currMail.isSent;
     storageService.store(MAILS_KEY, gMails)
 }

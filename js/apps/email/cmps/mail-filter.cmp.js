@@ -2,10 +2,10 @@ export default {
     template:`
         <section>
             <select v-on:change="emitFilter($event)" v-model="selectedFilter">
+                <option value="dateDown">Date ⇩</option>
+                <option value="dateUP">Date ⇧</option>
                 <option value="subjectUp">A - Z</option>
                 <option value="subjectDown">Z - A</option>
-                <option value="dateUP">Date ⇧</option>
-                <option value="dateDown">Date ⇩</option>
             </select>
             Search <input type="text" placeholder="By subject" v-on:keyup="emitSearch" v-model="filter.subject"/>
             <!-- <button v-on:click="emitSearch">Sort by date</button> -->
@@ -17,7 +17,7 @@ export default {
                 subject: '',
                 date: Date.now(),
             },
-            selectedFilter: 'subjectUp'
+            selectedFilter: 'dateDown'
         }
     },
     methods: {
@@ -26,8 +26,8 @@ export default {
             this.$emit('searched', {...this.filter})
         },
         emitFilter(event) {
-            console.log("selectedFilter:saw  ", this.selectedFilter)
-            this.$emit('filterBySubject', this.selectedFilter)
+            console.log("selectedFilter: ", this.selectedFilter)
+            this.$emit('filterBy', this.selectedFilter)
         }
     }
 }

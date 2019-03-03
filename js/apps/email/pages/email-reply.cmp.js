@@ -49,13 +49,16 @@ export default {
     `,
     data() {
         return {
-            mail: null,
+            mail: null
         }
     },
     methods: {
-        savetostorage(mail){
-            emailService.saveMail(mail);
+        savetostorage(){
+            this.mail.subject = 'RE:' + this.mail.subject
+            emailService.saveMail(this.mail);
+            emailService.addMail(this.mail)
         },
+        
         resizeArea(){
             this.$refs.textAreaRef.style.height = "5px";
             this.$refs.textAreaRef.style.height = (this.$refs.textAreaRef.scrollHeight)+"px";
@@ -68,13 +71,15 @@ export default {
         const mailId = this.$route.params.mailId;
         emailService.getMailById(mailId)
             .then((serviceMail) => {
-                this.mail = serviceMail
+                var copy = serviceMail;
+                var newMail = JSON.parse(JSON.stringify(copy))
+                this.mail = newMail
             });
     },
     mounted() {
 
     },
     components: {
-        emailService
+        // emailService
     }
 }

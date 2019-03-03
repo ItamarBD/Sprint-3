@@ -236,7 +236,7 @@ function handleImageFromUpload(ev, onImageReady) {
         var img = new Image();
         // img.onload = onImageReady.bind(null, img);
         img.onload = function () {
-            console.log('how fun')
+            // console.log('how fun')
         }
         img.src = event.target.result;
     }

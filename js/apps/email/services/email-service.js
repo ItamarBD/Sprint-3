@@ -18,7 +18,7 @@ var MAILS_KEY = 'mails'
 function saveMail(UpdateMail){
     var mailIdx = gMails.findIndex(mail => UpdateMail.id === mail.id);
     // gMails.splice(mailIdx, 1, UpdateMail);
-    console.log(gMails[mailIdx])
+    // console.log(gMails[mailIdx])
     // gMails.unshift(gMails[mailIdx]);
     storageService.store(MAILS_KEY, gMails);
 }
@@ -97,7 +97,7 @@ function _createMail(newMail) {
 }
 
 function deletedMail(mailId) {
-    console.log('on delete', mailId)
+    // console.log('on delete', mailId)
     var mailIdx = gMails.findIndex(mail => mailId === mail.id)
     gMails.splice(mailIdx, 1)
     storageService.store(MAILS_KEY, gMails)
@@ -105,14 +105,14 @@ function deletedMail(mailId) {
 }
 
 function changeReadMarkService(currMail) {
-    console.log('mail from service is:',currMail)
+    // console.log('mail from service is:',currMail)
     var mail = gMails.find((mail) => currMail.id === mail.id )
     mail.isRead = currMail.isRead;
     storageService.store(MAILS_KEY, gMails)
 }
 
 function changeSentMarkService(currMail) {
-    console.log('change sent mark', currMail)
+    // console.log('change sent mark', currMail)
     var mail = gMails.find((mail) => currMail.id === mail.id )
     mail.isSent = currMail.isSent;
     storageService.store(MAILS_KEY, gMails)

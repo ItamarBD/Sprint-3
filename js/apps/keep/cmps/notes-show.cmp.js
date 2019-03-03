@@ -176,7 +176,7 @@ export default {
         },
         onSendToEmail() {
             eventBus.$emit(SEND_NOTE_TO_MAIL);
-            console.log('send even bus')
+            // console.log('send even bus')
         },
     },
     computed: {

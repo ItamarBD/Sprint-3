@@ -183,7 +183,7 @@ main {
 }
 
 .home-page main img:hover {
-    opacity: 0.5;
+    opacity: 0;
 }
 
 /*********** About ***********/
@@ -252,10 +252,21 @@ main {
     font-weight: bold;
     justify-content: space-between;
     align-items: center;
+    
 }
 
 .mail-buttons-container {
-    align-items: center;
+    /* align-items: center; */
+}
+
+.mail-input-container {
+    flex-grow: 1;
+    justify-content: space-between;
+    
+}
+
+.mail-input {
+    
 }
 
 .sent-at {
@@ -319,12 +330,37 @@ main {
 
 .new-email {
     flex-direction: column;
-    transform: translate(100%, 0);
+    margin: 10px;
+    transform: translate(0, 0);
     transition: transform .8s;
 }
 
+.send-icon {
+    width: 30px;
+    margin: 10px;
+    transition: transform .3s;
+}
+
+.send-icon:hover {
+    /* background-color: green; */
+    color: green;
+    transform: scale(1.4)
+}
+
+.mail-input {
+    border-radius: 5px;
+    margin: 5px;
+    padding: 5px;
+}
+
+.mail-text-area-input {
+    padding: 6px 10px;
+    margin: 5px;
+    border-radius: 4px;
+}
+
 body.open .new-email {
-    transform: translate(0, 0);
+    transform: translate(0, 100%);
 }
 
 .not-bold {
@@ -374,7 +410,6 @@ body.open .new-email {
 
 .side-bar-element {
     margin: 30px;
-    font-size: 1.5em;
     cursor: pointer;
 }
 
@@ -408,7 +443,19 @@ body.open .new-email {
     resize: none;
 }
 
+.send-mail-btn {
+
+    margin: 1px 1px;
+    background-color: rgba(238, 225, 225, 0);
+    border: none;
+    cursor: pointer;
+    transition: transform .3s;
+    padding: 0;
+    outline: none;
+}
+
 .mail-btn-sent{
+
     padding: 4px 8px;
     cursor: pointer;
     border: none;
@@ -434,11 +481,20 @@ body.open .new-email {
     transition: transform .3s;
     padding: 0;
     outline: none;
+    transition: transform .3s;
+}
+
+.mail-btn:hover {
+    transform: scale(1.4)
 }
 
 .mail-btn-img {
     width: 30px;
     margin: 0 5px;
+}
+
+.buttons-inputs {
+    margin: 0 20px;
 }
 
 .mail-area-edit:before {
@@ -455,15 +511,121 @@ body.open .new-email {
     /* resize:none; */
 }
 
-@media (min-width: 500px) {
+.mobile-menu-button {
+    display: none;
+}
+
+@media (max-width: 740px) {
     
     .mail-preview {
-        padding: 6px;
+        width: 100vw;
+        padding: 0px;
+        margin: 0;
+        flex-direction: row;
+
+    }
+
+    .mails-list {
+        padding: 0px;
+        margin: 0;
+    }
+
+    .mail-buttons-container {
+        /* align-items: center; */
+        margin-right: 25px; 
+    }
+    
+    .mail-input-container {
+        flex-direction: column;
+        margin-left: 20px;
+    }
+    
+    .mail-input {
+
+    }
+
+    .mobile-menu-button {
+        display: block;
+        /* background-color: #0FA3B1; */
+        cursor: pointer;
+        font-size: 2rem;
+        line-height: 100px;
+        float: right;
+        margin: 0 20px;
     }
 
     .mail-btn-img {
         margin: 0 2px;
     }
+    .mails-container {
+        flex-direction: column-reverse;
+        /* justify-content: flex-end; */
+    }
+
+    .compose-btn {
+        margin-bottom: 15px;
+    }
+
+    .side-nav {
+        z-index: 1;
+        position: fixed;
+        right: 0;
+        top: 0;
+        background-color: #0FA3B1;
+        color: #0F1C2F;
+        /* height: 100vw; */
+        border-left: 1px solid rgba(0, 0, 0, 0.3);
+        transform: translate(100%, 0);
+        transition: transform .6s;
+        margin-top: 129px;
+        font-size: 2em;
+    }
+
+    body.open .side-nav {
+        transform: translate(0, 0);
+    }
+
+    body.open .screen {
+        visibility: visible;
+        /* opacity: 0.5; */
+    }
+
+    footer {
+        position: inherit;
+    }
+
+    body {
+        margin-bottom: 0;
+
+    }
+    .mail-buttons-container {
+        flex-wrap: wrap;
+
+    }
+
+    /* .side-nav .side-bar-element {
+        color: inherit;
+        text-transform: uppercase;
+        padding: 30px 30px;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+        display: block;
+        width: 100vw;
+        text-align: center;
+    } */
+
+    /* .screen {
+        position: fixed;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        visibility: hidden;
+        opacity: 0;
+        cursor: pointer;
+        transition: opacity .3s;
+        background: #000;
+    } */
+
 }
 
 

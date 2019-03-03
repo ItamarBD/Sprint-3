@@ -9,7 +9,6 @@ export default {
             <main> 
                 <div class="mail-details flex space-start">
                     
-                    <!-- omer change *span* to *label* and the *div* to *input* -->
                     <label style="display: inline-block; float:left; margin-top: 4px;">Sent form:</label>
                     <input type="text" v-model="mail.sentFrom" class="mail-title-edit">        
 
@@ -26,7 +25,6 @@ export default {
                     {{mail.subject}} 
                 </div>
 
-                <!-- omer change the *div* to *textarea* -->
                 <div class="mail-details message">
                     <div>Message: </div>
                     <textarea class="mail-area-edit" ref="textAreaRef" type="text"

@@ -5,10 +5,14 @@ export default {
             <div>
                 <button class="close-new-email btn" v-on:click="closeNewMail">Close</button>
             </div>    
-            <input v-model="newMail.sentTo" type="text" placeholder="Email Adress">
-            <input v-model="newMail.subject" type="text" placeholder  ="Subject">
-            <textarea v-model="newMail.body" placeholder="Message" cols="30" rows="10"></textarea>
-            <button v-on:click="emitNewMail" class="btn">SEND</button>
+            <input v-model="newMail.sentTo" type="text" placeholder="Email Adress" class="mail-input">
+            <input v-model="newMail.subject" type="text" placeholder  ="Subject" class="mail-input">
+            <!-- <div> -->
+                <textarea v-model="newMail.body" placeholder="Message" cols="30" rows="10" class="mail-text-area-input"></textarea>
+            <!-- </div> -->
+            <button v-on:click="emitNewMail" class="send-mail-btn btn">
+                <img src="./../../../../img/icons/send-button.png" class="send-icon">
+            </button>
         </div>
 
         <button v-if="!isClickNewMAil" v-on:click="clickedNewEmail" class="compose-btn btn">Compose</button>

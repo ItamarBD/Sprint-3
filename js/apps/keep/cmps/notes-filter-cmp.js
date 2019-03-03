@@ -36,4 +36,7 @@ export default {
             this.isFilterOpen = !this.isFilterOpen
         })
     },
+    destroyed() {
+        eventBus.$off(EVENT_TOGGLE_SEARCH);
+    },
 }

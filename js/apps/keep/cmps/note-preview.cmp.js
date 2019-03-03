@@ -141,21 +141,21 @@ export default {
             })
             this.note.todos.splice(todoIdx, 1);
         },
-        removeImgUrl(){
+        removeImgUrl() {
             this.note.imgUrl.isNew = false;
             this.note.imgUrl.src = '';
         },
-        removeViedoUrl(){
+        removeViedoUrl() {
             this.note.vdoUrl.isNew = false;
             this.note.vdoUrl.src = '';
         },
-        removeAudioUrl(){
+        removeAudioUrl() {
             this.note.adoUrl.isNew = false;
             this.note.adoUrl.src = '';
         },
         makeNewTodo() {
             var toPush = {
-                id: this.todosIdCounter + 'edit',
+                id: this.todosIdCounter + this.todosIdCounter + 1000,
                 txt: ''
             }
             this.note.todos.push(toPush);
@@ -170,9 +170,9 @@ export default {
         makeNewAudioUrl() {
             this.note.adoUrl.isNew = true;
         },
-        resizeArea(){
+        resizeArea() {
             this.$refs.textAreaRef.style.height = "5px";
-            this.$refs.textAreaRef.style.height = (this.$refs.textAreaRef.scrollHeight)+"px";
+            this.$refs.textAreaRef.style.height = (this.$refs.textAreaRef.scrollHeight) + "px";
         }
     },
 

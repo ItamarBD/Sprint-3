@@ -66,7 +66,10 @@ export default {
             // return this.notes;
             return this.notes.filter(note => {
                if(note.title){
-                   var isTitleOk = note.title.includes(this.filterBy.title)
+                   var noteTitle = note.title.toLowerCase();
+                   var filterTitle = this.filterBy.title.toLowerCase();
+                   
+                   var isTitleOk = noteTitle.includes(filterTitle)
                    
                    if (isTitleOk) {
                        return true

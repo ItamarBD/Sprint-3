@@ -70,7 +70,7 @@ html {
     url(/img/somepic/itamar.png),
     url(/img/somepic/me.png),
     url(/img/somepic/yaron2.png),
-    url(/img/somepic/asaf2.png),
+    url(/img/somepic/asaf3.png),
     url(/img/flowers/plamoria3.png),
     url(/img/flowers/plamoria3.png),
     url(/img/somepic/shiri2.png),
@@ -122,27 +122,26 @@ header {
     position: relative;
     font-size: 1.2em;
     color: rgb(255, 255, 255);
-    background-color: #6b5b95ad;
+    background-color: #723167c5;
     padding: 4px;
     border-radius: 2px;
     margin: 6px 4px;
-    text-shadow: 0 0 6px black;
-    box-shadow: 0px 0px 8px 0px rgb(61, 44, 57);
+    /* text-shadow: 0 0 6px black; */
+    /* box-shadow: 0px 0px 8px 0px rgb(61, 44, 57); */
     border-radius: 4px;
     /* border: 2px solid rgb(117, 193, 238); */
     /* transition: all .3s; */
     transition: background-color .3s, box-shadow .3s;
-
 }
 
 .main-nav a:hover {
-    background-color: #db8acec5;
+    background-color: #a35195c5;
     box-shadow: inset 0px 0px 8px 0px black;
 }
 
 .main-nav .router-link-active {
     color: rgb(255, 255, 255);
-    background-color: #db8acec5;
+    background-color: #b45da6c5;
     box-shadow: inset 0px 0px 8px 0px black;
 }
 
@@ -160,6 +159,40 @@ main {
 }
 
 /*********** Home ***********/
+
+.home-page:before {
+    z-index: -100;
+    content: '';
+    width: 100%;
+    height: 80vh;
+    position: absolute;
+    background-position:
+        top 0px left 10px,
+        top 0px right 10px,
+        bottom 0px right 10px,
+        bottom 0px left 10px,
+        bottom 81vh right 50vw,
+        bottom 65vh right 25vw,
+        bottom 50vh right 70vw,
+        bottom 10vh right 60vw,
+        bottom 48vh right 35vw,
+        bottom 30vh right 20vw,
+        bottom 26vh right 76vw;
+    background-size: 54px;
+    background-repeat: no-repeat;
+    background-image:
+    url(/img/somepic/itamar.png),
+    url(/img/somepic/me.png),
+    url(/img/somepic/yaron2.png),
+    url(/img/somepic/asaf3.png),
+    url(/img/flowers/plamoria3.png),
+    url(/img/flowers/plamoria3.png),
+    url(/img/somepic/shiri2.png),
+    url(/img/somepic/yaron.png),
+    url(/img/somepic/shiri.png),
+    url(/img/somepic/messi.png),
+    url(/img/flowers/plamoria3.png);
+}
 
 .home-page header h1 {
     font-family: akronim-font, henny-penny-font, indi-font, Arial, Helvetica, sans-serif;
@@ -255,18 +288,9 @@ main {
     
 }
 
-.mail-buttons-container {
-    /* align-items: center; */
-}
-
 .mail-input-container {
     flex-grow: 1;
     justify-content: space-between;
-    
-}
-
-.mail-input {
-    
 }
 
 .sent-at {
@@ -342,7 +366,6 @@ main {
 }
 
 .send-icon:hover {
-    /* background-color: green; */
     color: green;
     transform: scale(1.4)
 }
@@ -384,7 +407,6 @@ body.open .new-email {
     height: 300px;
     background-color: #fff;
     text-align: left;
-    /* margin: 10px; */
 }
 
 .link {
@@ -636,14 +658,13 @@ body.open .new-email {
 .add-new-note-section {
     width: 95vw;
     margin: 6px auto;
-    padding: 4px;
     /* background-color: #c4b7a6; */
     background-image: url("../img/flowers/main\ input.png");
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
     justify-content: center;
-    padding: 10px 12px;
+    padding: 8px 12px 0px 12px;
     border-radius: 4px;
     justify-content: space-evenly;
     font-family: cursive, merienda-font, arial, serif, sans-serif;
@@ -651,8 +672,7 @@ body.open .new-email {
 
 .add-new-note-section button,
 .new-note-remove-btn {
-    margin: 1px 1px;
-    font-size: 24px;
+    margin: 8px 1px 6px 1px;
     font-weight: bold;
     background-color: rgba(238, 225, 225, 0);
     border: none;
@@ -662,35 +682,40 @@ body.open .new-email {
     outline: none;
 }
 
-.add-new-note-section button:hover,
+.add-new-note-section button:hover {
+    transform: scale(1.1);
+}
 .add-new-note-section button.active {
-    transform: scale(1.4);
+    transform: scale(1.3);
+}
+.new-note-remove-btn {
+    font-size: 20px;
 }
 
 .add-new-note-section button img {
-    height: 28px;
+    height: 30px;
 }
 
 .new-note-remove-btn:hover {
-    transform: scale(1.2);
+    transform: scale(1.1);
 }
 
 .new-note-main {
-    background-color: #c4b7a600;
+    background-color: rgba(50, 128, 151, 0.925);
     height: 40px;
     font-size: 1.4em;
     border: none;
+    border-radius: 4px;
     width: 100%;
-    padding-left: 8px;
+    padding: 10px 8px 10px 8px;
     outline: none;
-    /* color: white; */
-    color: rgb(14, 14, 14);
+    color: rgb(247, 245, 245);
     font-family: cursive, merienda-font, arial, serif, sans-serif;
 }
 
 .new-note-main::placeholder {
     /* color: rgba(255, 255, 255, 0.884); */
-    color: rgba(0, 0, 0, 0.6);
+    color: rgba(248, 248, 248, 0.7);
 }
 
 .new-note-add-todo {
@@ -703,10 +728,11 @@ body.open .new-email {
     margin: 4px 0 4px 0;
     padding: 6px 12px;
     outline: none;
+    transition: background-color .3s;
 }
 
 .new-note-add-todo:hover {
-    background-color: rgb(175, 188, 60);
+    background-color: rgb(65, 206, 154);
 }
 .new-note-add-btn,
 .new-note-clear-btn {
@@ -720,24 +746,26 @@ body.open .new-email {
 }
 
 .new-note-add-btn {
-    background-color: rgb(79, 143, 111);
+    background-color: rgb(52, 180, 94);
     font-size: 0.8em;
     padding: 8px 4px;
+    transition: background-color .3s;
 }
 
 .new-note-add-btn:hover {
-    background-color: rgb(91, 194, 125);
+    background-color: rgb(57, 197, 104);
 }
 
-.new-note-clear-btn {
-    background-color: #c96a60;
+/* .new-note-clear-btn {
+    background-color: #ff3c3c;
     font-size: .7em;
     padding: 8px 4px;
+    transition: background-color .3s;
 }
 
 .new-note-clear-btn:hover {
     background-color: #ff3c3c;
-}
+} */
 
 .filter-open,
 .filter-close{
@@ -753,19 +781,21 @@ body.open .new-email {
 }
 
 .filter-open {
-    background-color: #c29277;
+    background-color: #e9882d;
+    transition: background-color .3s;
 }
 
 .filter-open:hover {
-    background-color: #e9882d;
+    background-color: #f38e2f;
 }
 
 .filter-close {
-    background-color: #a76b6b;
+    background-color: rgb(212, 116, 116);
+    transition: background-color .3s;
 }
 
 .filter-close:hover {
-    background-color: rgb(212, 116, 116);
+    background-color: rgb(223, 121, 121);
 }
 
 .filter-input{
@@ -797,7 +827,7 @@ body.open .new-email {
 }
 
 .filter-btn:hover {
-    transform: scale(1.2);
+    transform: scale(1.1);
 }
 
 .upload-note-file {
@@ -978,7 +1008,7 @@ body.open .new-email {
 }
 
 .note-btn-remove:hover {
-    transform: scale(1.2);
+    transform: scale(1.1);
 }
 
 .note-btn-add {
@@ -1055,7 +1085,7 @@ body.open .new-email {
 
 .container-note-ed button:hover,
 .container-note-ed label:hover {
-    transform: scale(1.25);
+    transform: scale(1.1);
 }
 
 .btn-note-ed {
@@ -1126,8 +1156,53 @@ footer {
     text-shadow: 0 0 6px black;
 }
 
+/*********************** Integration **********************/
 
-/************** Tablet and Desktop **************/
+.mail-from-note-body{
+    background-color: beige;
+    text-align: left;
+    padding: 10px 10px 10px 10px;
+    border: 1px black solid;
+}
+
+.mail-from-notes-details{
+    width: 600px;
+    border-radius: 5px;
+    margin: 0 auto;
+    background-color: beige;
+    border: 1px black solid;
+    padding: 10px;
+    text-align: left;
+}
+
+.mail-from-note-input{
+    width: 50%;
+    padding: 4px 4px;
+    margin: 2px 0;
+    border: none;
+    font-size: 1em;
+    background-color: rgb(247, 220, 175);
+    color: black;
+    border-radius: 2px;
+    outline: none;
+    font-family: cursive, merienda-font, arial, serif, sans-serif;
+}
+
+.mail-from-note-area{
+    width: 80%;
+    height: 80px;
+    background-color: rgb(175, 215, 247);
+    padding: 2px 6px;
+    margin: 0 0 4px 0;
+    border: none;
+    font-size: 1em;
+    color: black;
+    border-radius: 4px;
+    outline: none;
+    font-family: cursive, merienda-font, arial, serif, sans-serif;
+}
+
+/************************** Tablet and Desktop **************************/
 
 @media (min-width: 500px) {
     .new-note-main {
@@ -1135,6 +1210,7 @@ footer {
     }
 
     .add-new-note-section {
+        padding: 8px 12px 6px 12px;
         justify-content: space-between;
     }
 

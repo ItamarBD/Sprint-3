@@ -9,73 +9,91 @@ export default {
                 v-on:keyup.enter="emitNewNote(); cleanPost();" 
                 v-model="newNote.title">
 
-            <button v-bind:class="{ active: typeChoose === 'text' }"
+            <button v-bind:class="{ active: typeChoose === 'text' }" title="Text area"
                 v-on:click="changeType('text')">
-                <img src="img/icons/afont2.png">
+                <img src="img/icons/Tfont2.png">
             </button>
 
-            <button v-bind:class="{ active: typeChoose === 'imgUrl' }"
+            <button v-bind:class="{ active: typeChoose === 'imgUrl' }" title="Image URL"
                 v-on:click="changeType('imgUrl')">📸
             </button>
 
-            <button v-bind:class="{ active: typeChoose === 'videoUrl' }"
-            v-on:click="changeType('videoUrl')">🎥</button>
+            <button v-bind:class="{ active: typeChoose === 'videoUrl' }" title="Video URL"
+                v-on:click="changeType('videoUrl')">🎥
+            </button>
 
-            <button v-bind:class="{ active: typeChoose === 'audioUrl' }"
+            <button v-bind:class="{ active: typeChoose === 'audioUrl' }" title="Audio URL"
             v-on:click="changeType('audioUrl')">🎶</button>
 
-            <button v-bind:class="{ active: typeChoose === 'todo' }"
-            v-on:click="changeType('todo')">📝</button>
+            <button v-bind:class="{ active: typeChoose === 'todo' }" title="Todo"
+                v-on:click="changeType('todo')">📝
+            </button>
 
-            <button v-bind:class="{ active: typeChoose === 'upload' }"
-            v-on:click="changeType('upload')"><img src="img/icons/cloud.png"></button>
+            <button v-bind:class="{ active: typeChoose === 'upload' }" title="Upload"
+                v-on:click="changeType('upload')">
+                    <img src="img/icons/cloud.png">
+            </button>
 
             <!-- <button v-on:click="cleanPost">🔥</button> -->
         </div>
 
-        <textarea class="new-note-text-area" v-if="typeChoose === 'text'" 
-            v-model="newNote.txt" placeholder="Add text"></textarea>
+        <textarea class="new-note-text-area" placeholder="Add text"
+            v-if="typeChoose === 'text'" 
+            v-model="newNote.txt">
+        </textarea>
 
-        <input class="new-note-input" 
-            v-on:keyup.enter="emitNewNote(); cleanPost();" v-if="typeChoose === 'imgUrl'" 
-            v-model="newNote.imgUrl.src"  type="text" placeholder="Add Image URL">
+        <input class="new-note-input" type="text" placeholder="Add Image URL"
+            v-on:keyup.enter="emitNewNote(); cleanPost();" 
+            v-if="typeChoose === 'imgUrl'" 
+            v-model="newNote.imgUrl.src">
 
-        <input class="new-note-input" 
-            v-on:keyup.enter="emitNewNote(); cleanPost();" v-if="typeChoose === 'videoUrl'" 
-            v-model="newNote.vdoUrl.src" type="text" placeholder="Add Video URL">
+        <input class="new-note-input" type="text" placeholder="Add Video URL"
+            v-on:keyup.enter="emitNewNote(); cleanPost();" 
+            v-if="typeChoose === 'videoUrl'"
+            v-model="newNote.vdoUrl.src">
 
-        <input class="new-note-input" 
-            v-on:keyup.enter="emitNewNote(); cleanPost();" v-if="typeChoose === 'audioUrl'" 
-            v-model="newNote.adoUrl.src" type="text" placeholder="Add Audio URL">
-
+        <input class="new-note-input" type="text" placeholder="Add Audio URL"
+            v-on:keyup.enter="emitNewNote(); cleanPost();" 
+            v-if="typeChoose === 'audioUrl'" 
+            v-model="newNote.adoUrl.src">
         
         <div v-if="typeChoose === 'todo'">
             <div ref="lines-todo" 
-            v-for="currTodo in newNote.todos" :key="currTodo.id">
-            <div>
-                <input class="new-note-input" type="text" v-on:keyup.enter="emitNewNote(); cleanPost();" 
-                v-model="currTodo.txt" placeholder="Write Todo">
-                <button v-on:click="removeTodo(currTodo.id)"
-                class="new-note-remove-btn">🗑️</button>
+                v-for="currTodo in newNote.todos" :key="currTodo.id">
+                <div>
+                <input class="new-note-input" type="text" placeholder="Write Todo"
+                    v-on:keyup.enter="emitNewNote(); cleanPost();" 
+                    v-model="currTodo.txt">
+                <button class="new-note-remove-btn" title="Delete"
+                    v-on:click="removeTodo(currTodo.id)">🗑️
+                </button>
+                </div>
             </div>
+            <button class="new-note-add-todo" title="Add Todo"
+                v-on:click="makeNewTodo">Add todo
+            </button>
         </div>
-        <button class="new-note-add-todo" v-on:click="makeNewTodo">Add todo</button>
-      </div>
 
-        <label v-if="typeChoose === 'upload'" for="upload-note-file" class="custom-upload-note-file">Upload File ☁
+        <label class="custom-upload-note-file" title="Upload file"
+            v-if="typeChoose === 'upload'" 
+            for="upload-note-file">Upload File ☁
         </label>
         <input id="upload-note-file" class="upload-note-file" multiple type="file"/>
 
         <div class="flex wrap align-center space-even">
-            <button class="new-note-add-btn" 
-            v-on:click="emitNewNote(); cleanPost();">ADD NOTE &nbsp;<span style="font-size: 0.8em;">(Enter)</span></button>
+            <button class="new-note-add-btn" title="Add note"
+                v-on:click="emitNewNote(); cleanPost();">ADD NOTE
+                <span style="font-size: 0.8em;">&nbsp; (Enter)</span>
+            </button>
 
             <!-- filter button -->
-            <button v-bind:class="toggleSearchBtn"
-            v-on:click="onFilterClicked">{{toggleSearchName}}</button>
+            <button v-bind:class="toggleSearchBtn" title="Search notes"
+                v-on:click="onFilterClicked">{{toggleSearchName}}
+            </button>
 
-            <button class="new-note-clear-btn"
-            v-on:click="emitClearAllNotes">Delete All !!</button>
+            <button class="new-note-clear-btn" title="Delete All Notes!"
+                v-on:click="emitClearAllNotes">Delete All !!
+            </button>
         </div>
 
     </section>
@@ -110,9 +128,8 @@ export default {
             this.checkForTodos();
 
             var copy = this.newNote;
-            var newNote = JSON.parse(JSON.stringify(copy))
-            this.$emit('addNote', newNote)
-            // this.$emit('addNote', { ...this.newNote })
+            var newNote = JSON.parse(JSON.stringify(copy));
+            this.$emit('addNote', newNote);
 
             this.newNote.todos = [{ id: 0, txt: '' }, { id: 1, txt: '' }];
         },
@@ -189,11 +206,11 @@ export default {
         }
     },
     created() {
-        window.addEventListener('resize', this.handleResize)
+        window.addEventListener('resize', this.handleResize);
         this.handleResize();
     },
     destroyed() {
-        window.removeEventListener('resize', this.handleResize)
+        window.removeEventListener('resize', this.handleResize);
     },
     mounted() {
         this.handleResize();

@@ -56,34 +56,36 @@ html {
         top 56px left 10px,
         top 56px right 10px,
         bottom 46px right 10px,
+        bottom 46px left 10px,
         bottom 81vh right 50vw,
-        bottom 60vh right 70vw,
+        bottom 65vh right 25vw,
+        bottom 50vh right 70vw,
         bottom 22vh right 60vw,
         bottom 48vh right 35vw,
         bottom 30vh right 20vw,
-        bottom 46px left 10px;
-    background-size: 86px;
+        bottom 26vh right 76vw;
+    background-size: 64px;
     background-repeat: no-repeat;
     background-image:
-        url(/img/flowers/plamoria3.png),
-        url(/img/flowers/plamoria3.png),
-        url(/img/flowers/plamoria3.png),
-        url(/img/flowers/plamoria3.png),
-        url(/img/flowers/plamoria3.png),
-        url(/img/flowers/plamoria3.png),
-        url(/img/flowers/plamoria3.png),
-        url(/img/flowers/plamoria3.png),
-        url(/img/flowers/plamoria3.png);
+    url(/img/somepic/itamar.png),
+    url(/img/somepic/me.png),
+    url(/img/somepic/yaron2.png),
+    url(/img/somepic/asaf2.png),
+    url(/img/flowers/plamoria3.png),
+    url(/img/flowers/plamoria3.png),
+    url(/img/somepic/shiri2.png),
+    url(/img/somepic/yaron.png),
+    url(/img/somepic/shiri.png),
+    url(/img/somepic/messi.png),
+    url(/img/flowers/plamoria3.png);
 } */
 
 body {
     margin: 0;
     font-size: 16px;
-    background-color: rgb(131, 149, 167);
+    /* background-color: rgb(131, 149, 167); */
     /* background: linear-gradient(217deg, rgba(255, 60, 0, 0.8), rgba(255, 72, 0, 0) 70.71%), linear-gradient(127deg, rgba(255, 238, 0, 0.8), rgba(0, 255, 0, 0) 70.71%), linear-gradient(336deg, rgba(0, 81, 255, 0.8), rgba(0, 0, 255, 0) 70.71%); */
-    /* background: linear-gradient(217deg, rgba(131, 149, 167, 0.8),rgba(255, 72, 0, 0) 70.71%),
-     linear-gradient(127deg, rgba(223, 216, 130, 0.8),
-      rgba(0, 255, 0, 0) 70.71%), linear-gradient(336deg, rgba(146, 171, 226, 0.8), rgba(0, 0, 255, 0) 70.71%); */
+    background: linear-gradient(217deg, rgba(131, 149, 167, 0.8),rgba(255, 72, 0, 0) 70.71%),linear-gradient(127deg, rgba(223, 216, 130, 0.8),rgba(0, 255, 0, 0) 70.71%), linear-gradient(336deg, rgba(146, 171, 226, 0.8), rgba(0, 0, 255, 0) 70.71%);
     min-height: 94vh;
     margin-bottom: 6vh;
 }
@@ -166,11 +168,22 @@ main {
     color: rgb(43, 56, 51);
 }
 
+.home-img-div {
+    min-width: 65vw;
+    margin: 0 auto;
+}
+
 .home-page main img {
-    width: 95%;
-    height: auto;
+    width: auto;
+    max-width: 90vw;
+    max-height: 65vh;
     border-radius: 6px;
-    transition: opacity .3s;
+    opacity: 1;
+    transition: opacity .7s;
+}
+
+.home-page main img:hover {
+    opacity: 0.5;
 }
 
 /*********** About ***********/
@@ -181,16 +194,38 @@ main {
 
 .about-page header h1 {
     font-size: 36px;
-    margin: 10px 0;
+    margin: 10px 0 0 0;
+}
 
+.about-img-div {
+    min-width: 60vw;
+    margin: 0 auto;
+}
+
+.about-page main img{
+    width: auto;
+    max-width: 80vw;
+    max-height: 45vh;
+    border-radius: 6px;
+    
 }
 
 .about-page main {
     font-family: henny-penny-font, indi-font, Arial, Helvetica, sans-serif;
 }
 
+.about-p{
+    margin: 0 auto 8px auto;
+    width: 80%;
+    border-radius: 4px;
+    background-color: #d8d8d800;
+    color: rgb(31, 31, 31);
+    font-size: 1.2em;
+
+}
+
 .about-page main a {
-    font-size: 22px;
+    font-size: 18px;
     color: rgb(214, 214, 214);
     padding: 4px 8px 0px 8px;
     background-color: rgba(31, 74, 155, 0.733);

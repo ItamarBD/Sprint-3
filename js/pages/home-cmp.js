@@ -7,8 +7,10 @@ export default {
             <header>
                 <h1>Home sweet home..</h1>
             </header>
-            <main> 
-                <img src="img/somepic/kosta-brava.jpeg">
+            <main>
+                <div class="home-img-div">
+                    <img src="img/somepic/kosta-brava.jpeg">
+                </div>
             </main>
         </section>
     `,

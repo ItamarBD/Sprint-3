@@ -2,14 +2,16 @@ import { eventBus, EVENT_TOGGLE_SEARCH } from '../../../event-bus.js';
 
 export default {
     template: `
-        <section v-if="isFilterOpen" class="notes-filter">
+        <section class="notes-filter"
+            v-if="isFilterOpen">
             
             <label style="display: inline-block; font-family: merienda-font, arial; font-weight: bold;"
-            >Search Title:</label>
+                >Search Title:
+            </label>
             <input class="filter-input" type="text" placeholder="Find Title" 
                 v-on:keyup.enter="emitFilter" 
                 v-model="filterBy.title">
-            <button class="filter-btn"
+            <button class="filter-btn" title="Search"
                 v-on:click="emitFilter">🍭
             </button>
             

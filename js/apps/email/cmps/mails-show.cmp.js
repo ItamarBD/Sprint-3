@@ -1,10 +1,11 @@
+import { eventBus, SEND_NOTE_TO_MAIL } from '../../../event-bus.js';
+
 import emailService from '../services/email-service.js'
 
 export default {
     props: ['mails'],
     template: `
     <section>
-    
 
         <div v-if="mails" >
             <ul>
@@ -55,11 +56,15 @@ export default {
         
     },
     created() {
+        console.log('in created');
         const mailId =this.$route.params.mailId
         emailService.getMailById(mailId)
-            .then(currMail =>{
-                this.mail = currMail
-            })
+        .then(currMail =>{
+            this.mail = currMail
+        });
+        eventBus.$on(SEND_NOTE_TO_MAIL, ()=>{
+            console.log('send note to mail! success');
+        })
     },
     mounted() {
 

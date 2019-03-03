@@ -108,19 +108,19 @@ header {
     /* line-height: 5vh; */
     /* padding: 10px; */
     display: flex;
-    justify-content: space-evenly;
+    justify-content: center;
     flex-wrap: wrap;
     font-family: merienda-font, indi-font, Arial, Helvetica, sans-serif;
 }
 
 .main-nav a {
     position: relative;
-    font-size: 1.4em;
+    font-size: 1.2em;
     color: rgb(255, 255, 255);
     background-color: #6b5b95ad;
     padding: 4px;
     border-radius: 2px;
-    margin: 6px 2px;
+    margin: 6px 4px;
     text-shadow: 0 0 6px black;
     box-shadow: 0px 0px 8px 0px rgb(61, 44, 57);
     border-radius: 4px;
@@ -167,12 +167,7 @@ main {
     width: 95%;
     height: auto;
     border-radius: 6px;
-    opacity: 0.85;
     transition: opacity .3s;
-}
-
-.home-page main img:hover {
-    opacity: 1;
 }
 
 /*********** About ***********/
@@ -429,7 +424,8 @@ body.open .new-email {
     outline: none;
 }
 
-.add-new-note-section button:hover {
+.add-new-note-section button:hover,
+.add-new-note-section button.active {
     transform: scale(1.4);
 }
 
@@ -474,7 +470,6 @@ body.open .new-email {
 .new-note-add-todo:hover {
     background-color: rgb(175, 188, 60);
 }
-
 .new-note-add-btn,
 .new-note-clear-btn {
     cursor: pointer;
@@ -482,31 +477,39 @@ body.open .new-email {
     color: white;
     border-radius: 4px;
     margin: 4px 0 4px 0;
-    padding: 6px 12px;
     outline: none;
     font-family: cursive, merienda-font, arial, serif, sans-serif;
 }
 
 .new-note-add-btn {
-    background-color: rgb(88, 161, 125);
-    font-size: 1em;
-    padding: 4px 8px;
+    background-color: rgb(79, 143, 111);
+    font-size: 0.8em;
+    padding: 8px 4px;
 }
 
 .new-note-add-btn:hover {
     background-color: rgb(91, 194, 125);
 }
 
+.new-note-clear-btn {
+    background-color: #c96a60;
+    font-size: .7em;
+    padding: 8px 4px;
+}
+
+.new-note-clear-btn:hover {
+    background-color: #ff3c3c;
+}
+
 .filter-open,
 .filter-close{
-    padding: 4px 8px;
+    padding: 8px 4px;
+    font-size: .8em;
     cursor: pointer;
     border: none;
     color: white;
     border-radius: 4px;
-    font-size: 1em;
     margin: 4px 0 4px 0;
-    padding: 6px 12px;
     outline: none;
     font-family: merienda-font, arial, serif, sans-serif;
 }
@@ -527,14 +530,36 @@ body.open .new-email {
     background-color: rgb(212, 116, 116);
 }
 
-.new-note-clear-btn {
-    background-color: #c96a60;
-    font-size: .8em;
-    padding: 3px 6px;
+.filter-input{
+    width: 50%;
+    padding: 6px 10px;
+    margin: 2px 0;
+    border: none;
+    font-size: 1.1em;
+    background-color: #e68d5a;
+    color: white;
+    border-radius: 2px;
+    outline: none;
+    font-family: cursive, merienda-font, arial, serif, sans-serif;
+}
+.filter-input::placeholder {
+    color: rgba(255, 255, 255, 0.7);
 }
 
-.new-note-clear-btn:hover {
-    background-color: #ff3c3c;
+.filter-btn{
+    margin: 1px 1px;
+    font-size: 24px;
+    font-weight: bold;
+    background-color: rgba(238, 225, 225, 0);
+    border: none;
+    cursor: pointer;
+    transition: transform .3s;
+    padding: 0;
+    outline: none;
+}
+
+.filter-btn:hover {
+    transform: scale(1.2);
 }
 
 .upload-note-file {
@@ -702,7 +727,7 @@ body.open .new-email {
     color: rgba(255, 255, 255, 0.7);
 }
 
-.note-todo-remove {
+.note-btn-remove {
     margin: 1px 1px;
     font-size: 16px;
     font-weight: bold;
@@ -714,11 +739,11 @@ body.open .new-email {
     outline: none;
 }
 
-.note-todo-remove:hover {
+.note-btn-remove:hover {
     transform: scale(1.2);
 }
 
-.note-todo-add {
+.note-btn-add {
     padding: 4px 8px;
     cursor: pointer;
     border: none;
@@ -730,7 +755,7 @@ body.open .new-email {
     /* transition: transform .3s; */
 }
 
-.note-todo-add:hover {
+.note-btn-add:hover {
     background-color: rgb(15, 207, 137);
     /* transform: scale(1.2); */
 }
@@ -738,6 +763,28 @@ body.open .new-email {
 .note-preview-img {
     width: 100%;
     height: auto;
+}
+
+.note-preview-video,
+.note-edit-video{
+    width: 100%;
+    height: auto;
+    border: none;
+}
+
+.note-edit-video{
+    opacity: .5;
+}
+.note-edit-audio{
+    opacity: .5;
+}
+
+.note-preview-audio,
+.note-edit-audio{
+    width: 100%;
+    /* height: auto; */
+    background-color: rgb(209, 209, 196);
+    border-radius: 4px;
 }
 
 .note-edit-img {
@@ -826,19 +873,19 @@ body.open .new-email {
 
 footer {
     text-align: center;
-    padding: 4px;
+    /* padding: 4px; */
     background-color: #6b5b9548;
     color: white;
     font-family: shadows-font, merienda-font, indi-font, Arial, Helvetica, sans-serif;
-    margin: 0.5em 0 0;
-    height: 5vh;
-    line-height: 4vh;
-    font-size: 1.4em;
-    /* font-weight: bold; */
+    /* margin-top: .5em; */
+    height: 6vh;
+    line-height: 6vh;
+    font-size: 1em;
     position: fixed;
     left: 0;
     bottom: 0;
     width: 100%;
+    text-shadow: 0 0 6px black;
 }
 
 
@@ -860,16 +907,34 @@ footer {
 
     .main-nav a {
         margin: 0px 6px;
-
     }
 
     .new-note-text-area {
         width: 80%;
     }
+
+    .new-note-add-btn{
+        font-size: 1em;
+        padding: 6px 8px;
+    }
+    .new-note-clear-btn{
+        font-size: .8em;
+        padding: 6px 6px;
+    }
+    .filter-open,
+    .filter-close{
+        padding: 6px 8px;
+        font-size: 1em;
+    }
 }
 
-@media (min-width: 750px) {
+@media (min-width: 1000px) {
+    .note-list ul {
+        column-count: 3;
+    }
+}
 
+@media (min-width: 750px) and (max-width: 1000px) {
     .note-list ul {
         column-count: 3;
     }
@@ -889,6 +954,15 @@ footer {
     .add-new-note-section button {
         padding: 6px 10px;
     }
+}
+
+@media (min-height: 500px) {
+    footer {
+        font-size: 1.3em;
+        height: 4.5vh;
+        line-height: 4.5vh;
+    }
+
 }
 
 

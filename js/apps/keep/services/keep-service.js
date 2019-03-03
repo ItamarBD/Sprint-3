@@ -67,28 +67,95 @@ function _createNotes() {
 
 
     var notes = []
-    for (let i = 0; i < 4; i++) {
+    
+    notes.push(_createNote({
+        title: 'When I was young..',
+        txt: null,
+        imgUrl: { src: 'img/somepic/kids.jpg', isNew: false },
+        vdoUrl: { src: '', isNew: false },
+        adoUrl: { src: '', isNew: false },
+        isPin: true,
+        isEdit: false,
+        todos: [],
+        upload: null,
+        color: '',
+    }))
+    notes.push(_createNote({
+        title: 'Who\'s happy ?!',
+        txt: null,
+        imgUrl: { src: 'img/somepic/happy.jpg', isNew: false },
+        vdoUrl: { src: '', isNew: false },
+        adoUrl: { src: '', isNew: false },
+        isPin: false,
+        isEdit: false,
+        todos: [],
+        upload: null,
+        color: '',
+    }))
+    notes.push(_createNote({
+        title: 'Yammmi',
+        txt: null,
+        imgUrl: { src: 'img/somepic/rozalah.jpeg', isNew: false },
+        vdoUrl: { src: '', isNew: false },
+        adoUrl: { src: '', isNew: false },
+        isPin: true,
+        isEdit: false,
+        todos: [],
+        upload: null,
+        color: '',
+    }))
+    notes.push(_createNote({
+        title: 'See this video!',
+        txt: null,
+        imgUrl: { src: '', isNew: false },
+        vdoUrl: { src: 'https://streamable.com/s/z05ev/ivbclw%22%20frameborder=%220%22', isNew: false },
+        adoUrl: { src: '', isNew: false },
+        isPin: true,
+        isEdit: false,
+        todos: [],
+        upload: null,
+        color: '',
+    }))
+    notes.push(_createNote({
+        title: 'Listan this music!',
+        txt: null,
+        imgUrl: { src: '', isNew: false },
+        vdoUrl: { src: '', isNew: false },
+        adoUrl: { src: 'https://s0.vocaroo.com/media/download_temp/Vocaroo_s0EBWrZEVc6m.mp3', isNew: false },
+        isPin: true,
+        isEdit: false,
+        todos: [],
+        upload: null,
+        color: '',
+    }))
+    notes.push(_createNote({
+        title: 'Extra flowers',
+        txt: null,
+        imgUrl: { src: 'https://images.pexels.com/photos/1037994/pexels-photo-1037994.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500', isNew: false },
+        vdoUrl: { src: '', isNew: false },
+        adoUrl: { src: '', isNew: false },
+        isPin: false,
+        isEdit: false,
+        todos: [],
+        upload: null,
+        color: '',
+    }))
+    for (let i = 0; i < 3; i++) {
         notes.push(_createNote({
             title: `title Name ${i + 1}`,
-            url: { src: '', isNew: false },
+            imgUrl: { src: '', isNew: false },
+            vdoUrl: { src: '', isNew: false },
+            adoUrl: { src: '', isNew: false },
             isPin: false,
             isEdit: false,
-            todos: [],
+            todos: [{ id: 1, txt: 'I have something todo' },
+                    { id: 2, txt: 'but i forgat it..' },
+                    { id: 3, txt: 'blabla' }],
             txt: null,
             upload: null,
             color: ''
         }))
     }
-    notes.push(_createNote({
-        title: 'title Name 28',
-        url: { src: 'https://images.pexels.com/photos/1037994/pexels-photo-1037994.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500', isNew: false },
-        isPin: true,
-        isEdit: false,
-        todos: [],
-        txt: null,
-        upload: null,
-        color: ''
-    }))
 
     storageService.store(NOTES_KEY, notes);
     gNotes = notes;
@@ -100,7 +167,9 @@ function _createNote(newNote) {
         id: uniqueId,
         title: newNote.title,
         txt: newNote.txt,
-        url: newNote.url,
+        imgUrl: newNote.imgUrl,
+        vdoUrl: newNote.vdoUrl,
+        adoUrl: newNote.adoUrl,
         upload: newNote.upload,
         todos: newNote.todos,
         isPin: newNote.isPin,

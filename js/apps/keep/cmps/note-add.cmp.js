@@ -5,29 +5,48 @@ export default {
     <section>
         <div class="add-new-note-section flex wrap align-center">
 
-            <input v-on:keyup.enter="emitNewNote(); cleanPost();" 
-            class="new-note-main" ref="mainInput" 
-            v-model="newNote.title" type="text" placeholder="Add title">
+            <input class="new-note-main" ref="mainInput"  type="text" placeholder="Add title"
+                v-on:keyup.enter="emitNewNote(); cleanPost();" 
+                v-model="newNote.title">
 
-            <button v-on:click="changeType('text')"><img src="img/icons/afont2.png"></button>
-            <button v-on:click="changeType('imgUrl')">📸</button>
-            <button v-on:click="changeType('videoUrl')">🎥</button>
-            <button v-on:click="changeType('audioUrl')">🎶</button>
-            <button v-on:click="changeType('todo')">📝</button>
-            <button v-on:click="changeType('upload')"><img src="img/icons/cloud.png"></button>
+            <button v-bind:class="{ active: typeChoose === 'text' }"
+                v-on:click="changeType('text')">
+                <img src="img/icons/afont2.png">
+            </button>
+
+            <button v-bind:class="{ active: typeChoose === 'imgUrl' }"
+                v-on:click="changeType('imgUrl')">📸
+            </button>
+
+            <button v-bind:class="{ active: typeChoose === 'videoUrl' }"
+            v-on:click="changeType('videoUrl')">🎥</button>
+
+            <button v-bind:class="{ active: typeChoose === 'audioUrl' }"
+            v-on:click="changeType('audioUrl')">🎶</button>
+
+            <button v-bind:class="{ active: typeChoose === 'todo' }"
+            v-on:click="changeType('todo')">📝</button>
+
+            <button v-bind:class="{ active: typeChoose === 'upload' }"
+            v-on:click="changeType('upload')"><img src="img/icons/cloud.png"></button>
+
             <!-- <button v-on:click="cleanPost">🔥</button> -->
         </div>
 
-        <textarea class="new-note-text-area" v-if="typeChoose === 'text'" v-model="newNote.txt" placeholder="Add text"></textarea>
+        <textarea class="new-note-text-area" v-if="typeChoose === 'text'" 
+            v-model="newNote.txt" placeholder="Add text"></textarea>
 
-        <input class="new-note-input" v-on:keyup.enter="emitNewNote(); cleanPost();" v-if="typeChoose === 'imgUrl'" 
-        v-model="newNote.url.src"  type="text" placeholder="Add Image URL">
+        <input class="new-note-input" 
+            v-on:keyup.enter="emitNewNote(); cleanPost();" v-if="typeChoose === 'imgUrl'" 
+            v-model="newNote.imgUrl.src"  type="text" placeholder="Add Image URL">
 
-        <input class="new-note-input" v-on:keyup.enter="emitNewNote(); cleanPost();" v-if="typeChoose === 'videoUrl'" 
-        v-model="newNote.url.src" type="text" placeholder="Add Video URL">
+        <input class="new-note-input" 
+            v-on:keyup.enter="emitNewNote(); cleanPost();" v-if="typeChoose === 'videoUrl'" 
+            v-model="newNote.vdoUrl.src" type="text" placeholder="Add Video URL">
 
-        <input class="new-note-input" v-on:keyup.enter="emitNewNote(); cleanPost();" v-if="typeChoose === 'audioUrl'" 
-        v-model="newNote.url.src" type="text" placeholder="Add Audio URL">
+        <input class="new-note-input" 
+            v-on:keyup.enter="emitNewNote(); cleanPost();" v-if="typeChoose === 'audioUrl'" 
+            v-model="newNote.adoUrl.src" type="text" placeholder="Add Audio URL">
 
         
         <div v-if="typeChoose === 'todo'">
@@ -51,6 +70,7 @@ export default {
             <button class="new-note-add-btn" 
             v-on:click="emitNewNote(); cleanPost();">ADD NOTE &nbsp;<span style="font-size: 0.8em;">(Enter)</span></button>
 
+            <!-- filter button -->
             <button v-bind:class="toggleSearchBtn"
             v-on:click="onFilterClicked">{{toggleSearchName}}</button>
 
@@ -65,7 +85,9 @@ export default {
             newNote: {
                 title: null,
                 txt: null,
-                url: { src: '', isNew: false },
+                imgUrl: { src: '', isNew: false },
+                vdoUrl: { src: '', isNew: false },
+                adoUrl: { src: '', isNew: false },
                 upload: null,
                 todos: [{ id: 0, txt: '' }, { id: 1, txt: '' }],
                 isPin: false,
@@ -119,7 +141,9 @@ export default {
             this.newNote = {
                 title: null,
                 txt: null,
-                url: { sec: '', isNew: false },
+                imgUrl: { src: '', isNew: false },
+                vdoUrl: { src: '', isNew: false },
+                adoUrl: { src: '', isNew: false },
                 upload: null,
                 todos: [{ id: 0, txt: '' }, { id: 1, txt: '' }],
                 isPin: false,
@@ -195,7 +219,7 @@ function handleImageFromUpload(ev, onImageReady) {
         var img = new Image();
         // img.onload = onImageReady.bind(null, img);
         img.onload = function () {
-            console.log('how fun ')
+            console.log('how fun')
         }
         img.src = event.target.result;
     }

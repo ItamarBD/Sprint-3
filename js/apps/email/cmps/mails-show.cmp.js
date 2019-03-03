@@ -8,20 +8,21 @@ export default {
 
         <div v-if="mails" >
             <ul>
-                <li class="clean-list" v-for="(currMail, idx) in mails"
-                    > 
+                <li class="clean-list" v-for="(currMail, idx) in mails"> 
                     <router-link :to="'/email-app/' + currMail.id">
-                    <div class="mail-preview" 
+                    <div class="mail-preview flex" 
                     v-bind:class="{'not-bold': currMail.isRead}"
                     @click.native="selectMail(currMail)"
                     >
-                    <span>{{currMail.sentFrom}}</span>
-                    <span>{{currMail.subject}}</span>
-                    <span>{{currMail.sentAt}}</span>
-                    <button class="delete-mail-btn btn" v-on:click.stop.prevent="emitDeleted(currMail.id)">Delete mail</button>
-                    <button v-if="!currMail.isRead" v-on:click.stop.prevent="markAsRead(currMail)">Mark as read</button>
-                    <button v-if="currMail.isRead" v-on:click.stop.prevent="markAsRead(currMail)">Mark as unread</button>
+                        <span>{{currMail.sentFrom}}</span>
+                        <span>{{currMail.subject}}</span>
+                        <span>{{currMail.sentAt}}</span>
+                        <div>
+                            <button class="delete-mail-btn btn" v-on:click.stop.prevent="emitDeleted(currMail.id)">	&#x2421</button>
+                            <button v-if="!currMail.isRead" v-on:click.stop.prevent="markAsRead(currMail)">Mark as read</button>
+                            <button v-if="currMail.isRead" v-on:click.stop.prevent="markAsRead(currMail)">&#x2709</button>
                         </div>
+                    </div>
                     </router-link>
                 </li>
           </ul>
@@ -45,7 +46,7 @@ export default {
             else this.selectedMail = mail
         },
         markAsRead(mail) {
-            console.log('mmail',mail)
+            console.log('mark as read',mail)
             mail.isRead = !mail.isRead
             this.$emit('onReading', mail)
         }

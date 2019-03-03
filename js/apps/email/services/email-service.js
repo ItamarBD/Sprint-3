@@ -52,12 +52,30 @@ function _createMails() {
     if (gMails && gMails.length) return;
 
     var mails = []
-    for (let i = 0; i < 5; i++) {
-        mails.push(_createMail({ subject: 'Wassap with Vue?' }))
-    }
-    for (let i = 0; i < 5; i++) {
-        mails.push(_createMail({ subject: 'aassap with Vue?' }))
-    }
+    mails.push(_createMail({ 
+        subject: 'Wassap with Vue?',
+        sentTo: 'Omer@misterBit.com',
+        sentFrom: 'Itamar@misterBit.com',
+        body: '',
+        isRead: false,
+        sentAt: new Date().toLocaleString(),
+        date: Date.now()
+     }))
+    mails.push(_createMail({ 
+        subject: 'wassap???',
+        sentTo: 'Omer@misterBit.com',
+        sentFrom: 'yaronv@misterBit.com',
+        body: '',
+        isRead: false,
+        sentAt: new Date().toLocaleString(),
+        date: Date.now()
+     }))
+    // for (let i = 0; i < 5; i++) {
+        // mails.push(_createMail({ subject: 'Wassap with Vue?' }))
+    // }
+    // for (let i = 0; i < 5; i++) {
+        // mails.push(_createMail({ subject: 'aassap with Vue?' }))
+    // }
     storageService.store(MAILS_KEY, mails);
     gMails = mails;
 }

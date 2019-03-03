@@ -3,7 +3,7 @@ export default {
     <section>
         <div class="flex new-email" v-if="isClickNewMAil">
             <div>
-                <button class="close-new-email" v-on:click="closeNewMail">✖</button>
+                <button class="close-new-email btn" v-on:click="closeNewMail">Close</button>
             </div>    
             <input v-model="newMail.sentTo" type="text" placeholder="Email Adress">
             <input v-model="newMail.subject" type="text" placeholder  ="Subject">
@@ -33,12 +33,15 @@ export default {
         emitNewMail() {
             this.$emit('addMail', { ...this.newMail })
             this.isClickNewMAil = false
+            document.body.classList.toggle('open');
         },
         clickedNewEmail() {
             this.isClickNewMAil = true;
+            document.body.classList.toggle('open');
         },
         closeNewMail() {
             this.isClickNewMAil = false;
+            document.body.classList.toggle('open');
         }
     },
     computed: { // v-bind

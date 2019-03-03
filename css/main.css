@@ -209,6 +209,7 @@ main {
 /********************************************** Email ************************************************/
 
 .mail-preview {
+    width: 800px;
     color: black;
     background-color: bisque;
     margin: 0px;
@@ -216,10 +217,56 @@ main {
     border-radius: 5px;
     padding: 10px;
     font-weight: bold;
+    justify-content: space-between;
 }
 
 .compose-btn {
     margin-top: 15px;
+    padding: 0 25px;
+    border-radius: 20px;
+    width: fit-content;
+    height: 40px;
+    border: 2px solid #c2c2c2;
+    background-color: white;
+    transition: 0.4s;
+    text-align: left;
+}
+
+.compose-btn:hover {
+    border-color: blue;
+    color: green;
+    padding-right: 50px;
+}
+
+.compose-btn:hover::after {
+    position: absolute;
+    content: "➕";
+    margin-left: 10px;
+
+}
+
+.close-new-email {
+    margin: 15px;
+    padding: 0 25px;
+    border-radius: 20px;
+    width: fit-content;
+    height: 40px;
+    border: 2px solid #c2c2c2;
+    background-color: white;
+    transition: 0.4s;
+    text-align: left;
+}
+
+.close-new-email:hover {
+    border-color: blue;
+    color: green;
+    padding-right: 40px;
+}
+
+.close-new-email:hover::after {
+    position: absolute;
+    content: "✖";
+    margin-left: 10px;
 }
 
 .mail-preview:hover {
@@ -230,6 +277,12 @@ main {
 
 .new-email {
     flex-direction: column;
+    transform: translate(100%, 0);
+    transition: transform .8s;
+}
+
+body.open .new-email {
+    transform: translate(0, 0);
 }
 
 .not-bold {
@@ -250,8 +303,9 @@ main {
 }
 
 .message {
-    height: 400px;
+    height: 300px;
     background-color: #fff;
+    text-align: left;
     /* margin: 10px; */
 }
 

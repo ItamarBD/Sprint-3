@@ -5,7 +5,7 @@ export default {
                 <option value="subjectUp">A - Z</option>
                 <option value="subjectDown">Z - A</option>
                 <option value="dateUP">Date ⇧</option>
-                <option value="DateUp">Date ⇩</option>
+                <option value="dateDown">Date ⇩</option>
             </select>
             Search <input type="text" placeholder="By subject" v-on:keyup="emitSearch" v-model="filter.subject"/>
             <!-- <button v-on:click="emitSearch">Sort by date</button> -->
@@ -26,7 +26,7 @@ export default {
             this.$emit('searched', {...this.filter})
         },
         emitFilter(event) {
-            console.log("selectedFilter:   ", this.selectedFilter)
+            console.log("selectedFilter:saw  ", this.selectedFilter)
             this.$emit('filterBySubject', this.selectedFilter)
         }
     }

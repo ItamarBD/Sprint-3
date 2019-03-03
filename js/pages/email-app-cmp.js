@@ -54,7 +54,7 @@ export default {
             this.filter = filter
         },
         setFilterBySubject(filter) {
-            console.log('filter', filter)
+            console.log('filter should be :-> ', filter)
             this.filterBy = filter
         },
         selectingMail(mail) {
@@ -62,7 +62,6 @@ export default {
             this.selectedMail = mail
         },
         changeReadMark(mail) {
-            console.log('mail 56 ', mail)
             emailService.changeReadMarkService(mail)
         },
         selectAndMark(mail) {
@@ -70,31 +69,29 @@ export default {
             changeReadMark(mail)
         },
         sortBySubjectUP(obj1, obj2) {
-            console.log('sort by subject')
+            console.log('sort by subject up' ,obj1.subject,obj2.subject)
+            let e1 = obj1.subject.toLowerCase();
+            let e2 = obj2.subject.toLowerCase();
+            if (e1 > e2) return -1
+            if (e1 < e2) return 1
+            return 0
+        },
+        sortBySubjectDown(obj1, obj2) {
+            console.log('sort by subject down' ,obj1.subject,obj2.subject)
             let e1 = obj1.subject.toLowerCase();
             let e2 = obj2.subject.toLowerCase();
             if (e1 < e2) return -1
             if (e1 > e2) return 1
             return 0
         },
-        sortBySubjectDown(obj1, obj2) {
-            console.log('sort by subject')
-            let e1 = obj1.subject.toLowerCase();
-            let e2 = obj2.subject.toLowerCase();
-            // console.log('e1', e1)
-            // console.log('e2', e2)
-            if (e1 > e2) return -1
-            if (e1 < e2) return 1
-            return 0
-        },
         sortByDateDown(date1, date2) {
-            console.log('sort by date')
+            console.log('sort by date down')
             if(date1.date < date2.date) return -1
             if(date1.date > date2.date) return 1
             return 0   
         },
         sortByDateUp(date1, date2) {
-            console.log('sort by date')
+            console.log('sort by date up')
             if(date1.date > date2.date) return -1
             if(date1.date < date2.date) return 1
             return 0   
@@ -108,32 +105,7 @@ export default {
     },
     computed: {
         mailsToShow() {
-            console.log('this.filter',this.filter)
-            console.log('filterBy',this.filterBy);
-            // console.log('sort',sortBy);
-
-            let sortBy = this.filterBy === 'subjectUp' ? this.sortBySubjectUp : this.sortBySubjectDown
-            // let sortBy = this.filterBy
-
-            // switch (sortBy) {
-            //     case 'subjectUp': {
-            //         this.sortBySubjectUp
-            //         break
-            //     } 
-            //     case 'subjectDownn': {
-            //         this.sortBySubjectDown
-            //         break
-            //     }
-            //     case 'dateUP': {
-            //         this.sortByDateUp
-            //         break
-            //     }
-            //     case 'dateDown': {
-            //         this.sortByDateDown
-            //         break
-            //     }
-            // }
-
+            // var sortedEmails = []
             if (!this.filter && !this.statusMailToDisplay) return this.mails
 
             let filteredMails = this.mails.filter(mail => {
@@ -144,12 +116,23 @@ export default {
                      this.statusMailToDisplay === 2 && !mail.isRead)))
             })
 
-            console.log('status', this.statusMailToDisplay);
+            if(this.filterBy === 'subjectUp')   {this.mails.sort((email1, email2) => (email1.subject.toLowerCase() < email2.subject.toLowerCase()) ? 1 : -1)}
+            if(this.filterBy === 'subjectDown') {this.mails.sort((email1, email2) => (email1.subject.toLowerCase() > email2.subject.toLowerCase()) ? 1 : -1)}
+            // switch (this.filterBy) {
+            //     case 'subjectUp': 
+            //     // sortedEmails = filteredMails.sort(this.sortBySubjectUp)
+            //     this.mails.sort((email1, email2) => (email1.subject.toLowerCase() < email2.subject.toLowerCase()) ? 1 : -1)
+            //     break;
+                
+            //     case 'subjectDown': 
+            //         console.log('I am in here')
+            //         // sortedEmails = filteredMails.sort(this.sortBySubjectDown)
+            //         this.mails.sort((email1, email2) => (email1.subject.toLowerCase() > email2.subject.toLowerCase()) ? 1 : -1) 
+            //         console.log('mails', this.mails)
+            //     break;
+            // }
             
-            filteredMails = filteredMails.sort(sortBy)
-            
-            console.log(filteredMails)
-            return filteredMails
+            // return sortedEmails
         }
     },
     created() {

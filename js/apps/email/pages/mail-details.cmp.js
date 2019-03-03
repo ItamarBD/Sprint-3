@@ -10,7 +10,7 @@ export default {
                <div class="mail-details"><span>Sent form: </span>{{mail.sentFrom}} </div>
                <div class="mail-details"><span>Sent At: </span>{{mail.sentAt}} </div>
                <div class="mail-details"><span>Subject: </span>{{mail.subject}} </div>
-               <div class="mail-details message"><div>Message: </div> {{mail.body}} </div>
+               <div class="mail-details message"><div> </div> {{mail.body}} </div>
                <!-- <div><span>Sent: </span>{{mail}} </div> -->
                <router-link class="link" exact to="/email-app">Back</router-link>
                <!------------- change *to="/email-app/reply"* to  *v-bind:to="pathToReply"*-------------->

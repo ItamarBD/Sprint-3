@@ -69,32 +69,24 @@ export default {
             changeReadMark(mail)
         },
         sortBySubjectUP(obj1, obj2) {
-            console.log('sort by subject up' ,obj1.subject,obj2.subject)
+            console.log('sort by subject up', obj1.subject, obj2.subject)
             let e1 = obj1.subject.toLowerCase();
             let e2 = obj2.subject.toLowerCase();
             if (e1 > e2) return -1
             if (e1 < e2) return 1
             return 0
         },
-        sortBySubjectDown(obj1, obj2) {
-            console.log('sort by subject down' ,obj1.subject,obj2.subject)
-            let e1 = obj1.subject.toLowerCase();
-            let e2 = obj2.subject.toLowerCase();
-            if (e1 < e2) return -1
-            if (e1 > e2) return 1
+        sortByDateUp(date1, date2) {
+            console.log('sort by date down')
+            if (date1.date < date2.date) return -1
+            if (date1.date > date2.date) return 1
             return 0
         },
         sortByDateDown(date1, date2) {
-            console.log('sort by date down')
-            if(date1.date < date2.date) return -1
-            if(date1.date > date2.date) return 1
-            return 0   
-        },
-        sortByDateUp(date1, date2) {
             console.log('sort by date up')
-            if(date1.date > date2.date) return -1
-            if(date1.date < date2.date) return 1
-            return 0   
+            if (date1.date > date2.date) return -1
+            if (date1.date < date2.date) return 1
+            return 0
         },
 
         emailsToDisplay(status) {
@@ -109,30 +101,32 @@ export default {
             if (!this.filter && !this.statusMailToDisplay) return this.mails
 
             let filteredMails = this.mails.filter(mail => {
-                if(!mail.subject) return true; // omer add to prevent error with *includes*
+                if (!mail.subject) return true; // omer add to prevent error with *includes*
                 return ((this.filter.hasOwnProperty('subject') && mail.subject.includes(this.filter.subject)) &&
                     (!this.statusMailToDisplay ||
-                    (this.statusMailToDisplay === 1 && mail.isRead ||
-                     this.statusMailToDisplay === 2 && !mail.isRead)))
+                        (this.statusMailToDisplay === 1 && mail.isRead ||
+                            this.statusMailToDisplay === 2 && !mail.isRead)))
             })
 
-            if(this.filterBy === 'subjectUp')   {this.mails.sort((email1, email2) => (email1.subject.toLowerCase() < email2.subject.toLowerCase()) ? 1 : -1)}
-            if(this.filterBy === 'subjectDown') {this.mails.sort((email1, email2) => (email1.subject.toLowerCase() > email2.subject.toLowerCase()) ? 1 : -1)}
-            // switch (this.filterBy) {
-            //     case 'subjectUp': 
-            //     // sortedEmails = filteredMails.sort(this.sortBySubjectUp)
-            //     this.mails.sort((email1, email2) => (email1.subject.toLowerCase() < email2.subject.toLowerCase()) ? 1 : -1)
-            //     break;
-                
-            //     case 'subjectDown': 
-            //         console.log('I am in here')
-            //         // sortedEmails = filteredMails.sort(this.sortBySubjectDown)
-            //         this.mails.sort((email1, email2) => (email1.subject.toLowerCase() > email2.subject.toLowerCase()) ? 1 : -1) 
-            //         console.log('mails', this.mails)
-            //     break;
-            // }
-            
-            // return sortedEmails
+            switch (this.filterBy) {
+                case 'subjectUp':
+                    filteredMails = filteredMails.sort(this.sortBySubjectUp)
+                    break;
+
+                case 'subjectDown':
+                    filteredMails = filteredMails.reverse()
+                    break;
+
+                case 'dateUP':
+                    filteredMails = filteredMails.sort(this.sortByDateUp)
+                    break;
+
+                case 'dateDown':
+                    filteredMails = filteredMails.sort(this.sortByDateDown)
+                    break;
+            }
+
+            return filteredMails
         }
     },
     created() {

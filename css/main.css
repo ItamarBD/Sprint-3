@@ -81,6 +81,9 @@ body {
     font-size: 16px;
     background-color: rgb(131, 149, 167);
     /* background: linear-gradient(217deg, rgba(255, 60, 0, 0.8), rgba(255, 72, 0, 0) 70.71%), linear-gradient(127deg, rgba(255, 238, 0, 0.8), rgba(0, 255, 0, 0) 70.71%), linear-gradient(336deg, rgba(0, 81, 255, 0.8), rgba(0, 0, 255, 0) 70.71%); */
+    /* background: linear-gradient(217deg, rgba(131, 149, 167, 0.8),rgba(255, 72, 0, 0) 70.71%),
+     linear-gradient(127deg, rgba(223, 216, 130, 0.8),
+      rgba(0, 255, 0, 0) 70.71%), linear-gradient(336deg, rgba(146, 171, 226, 0.8), rgba(0, 0, 255, 0) 70.71%); */
     min-height: 94vh;
     margin-bottom: 6vh;
 }
@@ -204,7 +207,7 @@ main {
 /********************************************** Email ************************************************/
 
 .mail-preview {
-    width: 800px;
+    width: 1000px;
     color: black;
     background-color: bisque;
     margin: 0px;

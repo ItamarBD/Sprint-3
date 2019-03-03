@@ -97,7 +97,6 @@ export default {
     },
     computed: {
         mailsToShow() {
-            // var sortedEmails = []
             if (!this.filter && !this.statusMailToDisplay) return this.mails
 
             let filteredMails = this.mails.filter(mail => {

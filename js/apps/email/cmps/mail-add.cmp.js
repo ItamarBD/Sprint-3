@@ -113,7 +113,7 @@ export default {
     created() {
         eventBus.$on(SEND_NOTE_TO_MAIL, note => {
             this.mailFromNote = note;
-            console.log(note);
+            // console.log(note);
             this.isClickNewMAil = true;
             document.body.classList.add('open');
             this.syncNoteToEmail();

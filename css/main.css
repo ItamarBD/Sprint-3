@@ -180,7 +180,7 @@ main {
         bottom 26vh right 76vw;
     background-size: 54px;
     background-repeat: no-repeat;
-    background-image:
+    /* background-image:
     url("/img/somepic/itamar.png"),
     url("/img/somepic/me.png"),
     url("/img/somepic/yaron2.png"),
@@ -191,7 +191,19 @@ main {
     url("/img/somepic/yaron.png"),
     url("/img/somepic/shiri.png"),
     url("/img/somepic/messi.png"),
-    url("/img/flowers/plamoria3.png");
+    url("/img/flowers/plamoria3.png"); */
+    background-image:
+    url("https://itamarbd.github.io/img/somepic/itamar.png"),
+    url("https://itamarbd.github.io/img/somepic/me.png"),
+    url("https://itamarbd.github.io/img/somepic/yaron2.png"),
+    url("https://itamarbd.github.io/img/somepic/asaf3.png"),
+    url("https://itamarbd.github.io/img/flowers/plamoria3.png"),
+    url("https://itamarbd.github.io/img/flowers/plamoria3.png"),
+    url("https://itamarbd.github.io/img/somepic/shiri2.png"),
+    url("https://itamarbd.github.io/img/somepic/yaron.png"),
+    url("https://itamarbd.github.io/img/somepic/shiri.png"),
+    url("https://itamarbd.github.io/img/somepic/messi.png"),
+    url("https://itamarbd.github.io/img/flowers/plamoria3.png");
 }
 
 .home-page header h1 {

@@ -36,9 +36,9 @@ export default {
                                         <img src="img/icons/write-email-envelope-button.png"  alt="&#x2709" class="mail-btn-img">                                                              
                                     </button>
                                     
-                                    <button class="mail-btn" title="Send to notes">
+                                    <!-- <button class="mail-btn" title="Send to notes">
                                         <img src="img/icons/post-it.png" class="mail-btn-img">                                                              
-                                    </button>
+                                    </button> -->
                                 </div>
 
                             <!-- </div> -->

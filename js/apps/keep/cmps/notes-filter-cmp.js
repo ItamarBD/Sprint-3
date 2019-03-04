@@ -16,7 +16,7 @@ export default {
             </button>
             
              
-        </section> 
+        </section>
     `,
     data() {
         return {

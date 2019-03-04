@@ -110,6 +110,7 @@ export default {
                 upload: null,
                 todos: [{ id: 0, txt: '' }, { id: 1, txt: '' }],
                 isPin: true,
+                isLove: false,
                 isEdit: false,
                 color: '',
             },
@@ -165,6 +166,7 @@ export default {
                 upload: null,
                 todos: [{ id: 0, txt: '' }, { id: 1, txt: '' }],
                 isPin: true,
+                isLove: false,
                 isEdit: false,
                 color: '',
             }

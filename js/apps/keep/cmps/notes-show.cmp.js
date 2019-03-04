@@ -13,6 +13,7 @@ export default {
                 v-for="(currNote, idx) in notes"
                 v-bind:key="currNote.id"
                 v-bind:class="{'marked-note': currNote.isPin}"
+                v-on:dblclick="toggleLove(currNote)"
                 class="square-note clean-list">
 
                 <note-preview
@@ -62,13 +63,25 @@ export default {
                         v-on:click="togglePin(currNote); emitSaveToStorage(currNote)">
                         <img src="img/icons/star.png">
                     </button>
+
+                    <!-- Like -->
+                    <button class="btn-note-ed like-on" title="Like"
+                        v-if="currNote.isLove" 
+                        v-on:click="toggleLove(currNote); emitSaveToStorage(currNote)">
+                        <img src="img/icons/like5.png">
+                    </button>
+                    <!-- Unlike -->
+                    <button class="btn-note-ed" title="Unlike"
+                        v-if="!currNote.isLove" 
+                        v-on:click="toggleLove(currNote); emitSaveToStorage(currNote)">
+                        <img src="img/icons/like3.png">
+                    </button>
                     
                     <!-- Save -->
                     <button class="btn-note-ed" title="Save"
                         v-if="currNote.isEdit"
                         v-on:click="toggleEditMode(currNote); emitSaveToStorage(currNote)">💾
                     </button>
-
                     <!-- Edit -->
                     <button class="btn-note-ed" title="Edit"
                         v-if="!currNote.isEdit"
@@ -86,6 +99,7 @@ export default {
                 v-if="notes && !currNote.isPin"
                 v-for="(currNote, idx) in notes"
                 v-bind:key="currNote.id"
+                v-on:dblclick="toggleLove(currNote)"
                 v-bind:class="{'marked-note': currNote.isPin}">
 
                 <note-preview
@@ -135,13 +149,25 @@ export default {
                         v-on:click="togglePin(currNote); emitSaveToStorage(currNote)">
                         <img src="img/icons/unstar.png">
                     </button>
+
+                    <!-- Like -->
+                    <button class="btn-note-ed like-on" title="Like"
+                        v-if="currNote.isLove" 
+                        v-on:click="toggleLove(currNote); emitSaveToStorage(currNote)">
+                        <img src="img/icons/like5.png">
+                    </button>
+                    <!-- Unlike -->
+                    <button class="btn-note-ed" title="Unlike"
+                        v-if="!currNote.isLove" 
+                        v-on:click="toggleLove(currNote); emitSaveToStorage(currNote)">
+                        <img src="img/icons/like3.png">
+                    </button>
                         
                     <!-- Save -->
                     <button class="btn-note-ed" title="Save"
                         v-if="currNote.isEdit"
                         v-on:click="toggleEditMode(currNote); emitSaveToStorage(currNote)">💾
                     </button>
-
                     <!-- Edit -->
                     <button class="btn-note-ed" title="Edit"
                         v-if="!currNote.isEdit"
@@ -166,6 +192,9 @@ export default {
         },
         togglePin(currNote) {
             currNote.isPin = !currNote.isPin;
+        },
+        toggleLove(currNote) {
+            currNote.isLove = !currNote.isLove;
         },
         emitSaveToStorage(currNote) {
             this.$emit('onSavetostorage', currNote)

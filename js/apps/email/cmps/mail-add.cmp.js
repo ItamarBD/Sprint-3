@@ -27,7 +27,7 @@ export default {
             </div>
 
             <button v-on:click="emitNewMail" class="send-mail-btn btn">
-                <img src="./../../../../img/icons/send-button.png" class="send-icon">
+                <img src="img/icons/send-button.png" class="send-icon">
             </button>
         </div>
 
@@ -44,7 +44,7 @@ export default {
                 isRead: false,
                 sentAt: new Date().toLocaleString(),
                 date: Date.now(),
-                isSent: false
+                // isSent: false
             },
             isClickNewMAil: false,
             mailFromNote: null,
@@ -53,7 +53,7 @@ export default {
     methods: {
         emitNewMail() {
             this.mailFromNote = null;
-            this.newMail.isSent = true;
+            // this.newMail.isSent = true;
             this.$emit('addMail', { ...this.newMail })
             this.isClickNewMAil = false;
             document.body.classList.toggle('open');
@@ -64,7 +64,7 @@ export default {
             this.newMail.isRead = false;
             this.newMail.sentAt = new Date().toLocaleString();
             this.newMail.date = Date.now();
-            this.newMail.isSent = false;
+            // this.newMail.isSent = false;
         },
         clickedNewEmail() {
             this.isClickNewMAil = true;

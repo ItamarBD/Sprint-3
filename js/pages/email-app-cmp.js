@@ -108,8 +108,7 @@ export default {
                 return ((this.filter.hasOwnProperty('subject') && mail.subject.includes(this.filter.subject)) &&
                     (!this.statusMailToDisplay ||
                     (this.statusMailToDisplay === 1 && mail.isRead ||
-                     this.statusMailToDisplay === 2 && !mail.isRead ||
-                     this.statusMailToDisplay === 3 && mail.isSent)))
+                     this.statusMailToDisplay === 2 && !mail.isRead)))
             })
 
             switch (this.filterBy) {

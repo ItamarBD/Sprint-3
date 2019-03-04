@@ -594,6 +594,7 @@ body.open .new-email {
     .mail-buttons-container {
         /* align-items: center; */
         margin-right: 25px; 
+        flex-direction: column-reverse;
     }
     
     .mail-input-container {
@@ -602,7 +603,7 @@ body.open .new-email {
     }
     
     .mail-input {
-
+        /* width: 80vw; */
     }
 
     .mobile-menu-button {
@@ -615,8 +616,13 @@ body.open .new-email {
         margin: 0 20px;
     }
 
+    .mail-btn {
+        padding: 5px;
+    }
+
     .mail-btn-img {
         margin: 0 2px;
+
     }
     .mails-container {
         flex-direction: column-reverse;

@@ -6,8 +6,8 @@ export default {
     props: ['notes'],
     template: `
     <section class="note-list">
-        <!----------------------------- Pinned Notes ---------------------------->
-        <p class="p-galery-pin">Pinned Notes</p>
+        <!----------------------------- Star Notes ---------------------------->
+        <p class="p-galery-pin">Star Notes</p>
         <ul>
             <li v-if="notes && currNote.isPin"
                 v-for="(currNote, idx) in notes"

@@ -193,7 +193,7 @@ main {
         bottom 48vh right 1vw,
         bottom 55vh right 14vw;
 
-    background-size: 86px;
+    background-size: 50px;
     background-repeat: no-repeat;
     /* background-image:
     url("/img/somepic/itamar.png"),
@@ -235,7 +235,7 @@ main {
 
 .home-page header h1 {
     font-family: akronim-font, henny-penny-font, indi-font, Arial, Helvetica, sans-serif;
-    font-size: 52px;
+    font-size: 36px;
     margin: 10px 0;
     color: rgb(43, 56, 51);
 }
@@ -1297,6 +1297,12 @@ footer {
     .filter-close{
         padding: 6px 8px;
         font-size: 1em;
+    }
+    .home-page:before {
+        background-size: 86px;
+    }
+    .home-page header h1 {
+        font-size: 56px;
     }
 }
 
